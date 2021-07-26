@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="decorator" content="atl.general"/>
+    <title>Request walk</title>
+
+<!--    /plugins/servlet/servlet-inf/site/js/scriptInfRequestWalk.js-->
+<!--    "/plugins/servlet/servlet-inf/site/css/styleRequestWalk.css"-->
+    <script defer src="/plugins/servlet/servlet-inf/site/js/scriptInfRequestWalk.js" type="text/javascript"></script>
+    <link href="/plugins/servlet/servlet-inf/site/css/styleRequestWalk.css" rel="stylesheet"/>
+    <script src="https://cdn.anychart.com/js/latest/anychart-bundle.min.js"></script>
+
+</head>
+<body>
+
+<div id="menu">
+    <table id="menuTable">
+        <tr>
+            <td>
+                Menu
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/plugins/servlet/servlet-inf/site/mainPage.html">
+                    <input type="button" id="menuButton1" value="Back to main page">
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/plugins/servlet/servlet-inf/site/infDog.html">
+                    <input type="button" id="menuButton2" value="Go to pets">
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/plugins/servlet/servlet-inf/site/infDogWalker.html">
+                    <input type="button" id="menuButton3" value="Go to dogWalkers">
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/plugins/servlet/servlet-inf/site/infClient.html">
+                    <input type="button" id="menuButton4" value="Go to clients">
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="newReq">
+    Request has been created!
+</div>
+
+<div id="contentRequestPage">
+
+    <h1>Work with requests walk</h1>
+
+    <h2>Search request</h2>
+
+    <div id="topForm"></div>
+
+    <script>
+        scriptInfRequestWalk().createForm();
+    </script>
+
+    <br>
+
+    <div id="findTableReq"></div>
+
+    <br>
+    <div id="requestTable"></div>
+
+    <br>
+    <table id = "charts">
+        <tr>
+            <td>
+                <div id="chart1"></div>
+            </td>
+            <td>
+                <div id="chart2"></div>
+            </td>
+        </tr>
+    </table>
+
+    <h2>Create request walk</h2>
+    <table id="createRequestTable">
+        <tr>
+            <td>
+                Owner:
+            </td>
+            <td>
+                <select id="selectReqOwner" onchange="scriptInfRequestWalk().loadInf()"
+                        class="inputReq"
+                        onclick="scriptInfRequestWalk().inputValueSelectOwner()">
+                    <option value="default">default</option>
+                </select>
+                <div id="inputOwner"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Pet:
+            </td>
+            <td>
+                <select id="selectPet"
+                        class="inputReq">
+                    <option value="default">no pets</option>
+                </select>
+                <div id="inputPet"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Request place:
+            </td>
+            <td>
+                <input type="text" onclick="scriptInfRequestWalk().inputValueRequestPlace()"
+                       class="inputReq"
+                       id="requestPlace" placeholder="Default">
+                <div id="inputRequestPlace"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Time walk:
+            </td>
+            <td>
+                <input type="datetime-local" onclick="scriptInfRequestWalk().inputValueTimeWalk()"
+                       class="inputReq"
+                       id="timeWalk">
+                <div id="inputTimeWalk"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Walk duration:
+            </td>
+            <td>
+                <input type="text" onclick="scriptInfRequestWalk().inputValueWalkDuration()"
+                       class="inputReq"
+                       id="walkDuration" placeholder="Default">
+                <div id="inputWalkDuration"></div>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="button" id="createButtonReq" onclick="scriptInfRequestWalk().crtReq()" value="create"></td>
+        </tr>
+    </table>
+
+    <script>
+        scriptInfRequestWalk().loadOwners();
+    </script>
+
+<!--    <style>-->
+<!--        #chart1 {-->
+<!--            margin: auto;-->
+<!--            width: 400px;-->
+<!--            height: 400px;-->
+<!--        }-->
+<!--    </style>-->
+
+<!--    <script>-->
+<!--        // let array = new Array(3);-->
+<!--        //-->
+<!--        // for (let i = 0; i < array.length; i++) {-->
+<!--        //     array[i] = new Array(2);-->
+<!--        //-->
+<!--        //     for (let j = 0; j < array[i].length; j++) {-->
+<!--        //-->
+<!--        //     }-->
+<!--        // }-->
+
+<!--        function crtReq(){-->
+<!--            let arr = [["Valera", 5], ["Dima", 3], ["Something", 1]]-->
+
+<!--            let chart = anychart.pie(arr);-->
+<!--            chart.title("Diagram");-->
+<!--            chart.container("chart1").draw();-->
+
+<!--        }-->
+
+<!--    </script>-->
+    <br>
+    <div id = "outReq"></div>
+
+    <div id="footerReq">&copy; Dvoryanchikov Sergey</div>
+</div>
+
+</body>
+</html>

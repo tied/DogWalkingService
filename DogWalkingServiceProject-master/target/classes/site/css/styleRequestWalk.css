@@ -1,0 +1,128 @@
+/*h1 {*/
+/*    text-align: center;*/
+/*    background: antiquewhite;*/
+/*}*/
+
+/*table {*/
+/*    border: 1px solid black;*/
+/*    font-size: 20px*/
+/*}*/
+
+/*th {*/
+/*    border: 1px solid black;*/
+/*    padding: 5px;*/
+/*}*/
+
+/*td {*/
+/*    border: 1px solid black;*/
+/*    padding: 5px;*/
+/*}*/
+
+/*h2 {*/
+/*    text-align: center;*/
+/*}*/
+
+/*#charts, #charts td{*/
+/*    border: 0;*/
+/*}*/
+
+/*#chart1 {*/
+/*    margin: auto;*/
+/*}*/
+
+/*#chart2 {*/
+/*    margin: auto;*/
+/*}*/
+
+/*#newReq {*/
+/*    color: green;*/
+/*    display: none;*/
+/*    font-size: 20px;*/
+/*    text-align: center;*/
+/*    margin-left: 85%;*/
+/*    position: fixed;*/
+/*    margin-top: 2%;*/
+/*}*/
+
+/*#findReq {*/
+/*    margin: 0 auto;*/
+/*    width: 40%;*/
+/*}*/
+
+/*#createRequestTable {*/
+/*    margin: 0 auto;*/
+/*    width: 40%;*/
+/*}*/
+
+/*#uniqueIdReq {*/
+/*    margin-left: 4%;*/
+/*    width: 90%;*/
+/*}*/
+
+/*#selectReqOwner, #selectPet, #requestPlace, #timeWalk, #walkDuration {*/
+/*    margin-left: 4%;*/
+/*    width: 90%;*/
+/*}*/
+
+/*#createButtonReq {*/
+/*    margin-left: 4%;*/
+/*    width: 90%;*/
+/*}*/
+
+/*#menu {*/
+/*    color: chartreuse;*/
+/*    text-align: center;*/
+/*    float: left;*/
+/*    position: fixed;*/
+/*    margin-top: 2%;*/
+/*    margin-left: 3%;*/
+/*}*/
+
+/*#menuTable {*/
+/*    background: dodgerblue;*/
+/*}*/
+
+/*#menuButton1, #menuButton2, #menuButton3, #menuButton4 {*/
+/*    width: 95%;*/
+/*}*/
+
+/*#contentRequestPage {*/
+/*    margin: 0 15%;*/
+/*    border: 3px solid gray;*/
+/*}*/
+
+/*#footerReq {*/
+/*    background: aquamarine;*/
+/*    height: 5%;*/
+/*    width: 100%;*/
+/*}*/
+
+/*#inputOwner {*/
+/*    text-align: center;*/
+/*    color: red;*/
+/*    font-size: 20px;*/
+/*}*/
+
+/*#inputPet {*/
+/*    text-align: center;*/
+/*    color: red;*/
+/*    font-size: 20px;*/
+/*}*/
+
+/*#inputRequestPlace {*/
+/*    text-align: center;*/
+/*    color: red;*/
+/*    font-size: 20px;*/
+/*}*/
+
+/*#inputTimeWalk {*/
+/*    text-align: center;*/
+/*    color: red;*/
+/*    font-size: 20px;*/
+/*}*/
+
+/*#inputWalkDuration {*/
+/*    text-align: center;*/
+/*    color: red;*/
+/*    font-size: 20px;*/
+/*}*/

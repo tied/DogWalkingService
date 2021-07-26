@@ -1,0 +1,139 @@
+/*h1 {*/
+/*    text-align: center;*/
+/*    background: antiquewhite;*/
+/*}*/
+
+/*h2 {*/
+/*    text-align: center;*/
+/*}*/
+
+/*table {*/
+/*    border: 1px solid black;*/
+/*    font-size: 20px*/
+/*}*/
+
+/*th {*/
+/*    border: 1px solid black;*/
+/*    padding: 5px;*/
+/*}*/
+
+/*td {*/
+/*    border: 1px solid black;*/
+/*    padding: 5px;*/
+/*}*/
+
+/*#findTableDW {*/
+/*    width: 100%;*/
+/*}*/
+
+/*#dogWalkerTable {*/
+/*    width: 100%;*/
+/*}*/
+
+/*#newDgWlkr {*/
+/*    color: green;*/
+/*    display: none;*/
+/*    font-size: 20px;*/
+/*    text-align: center;*/
+/*    margin-left: 85%;*/
+/*    position: fixed;*/
+/*    margin-top: 2%;*/
+/*}*/
+
+/*#findDogWalker {*/
+/*    margin: auto;*/
+/*    width: 45%;*/
+/*}*/
+
+/*#createDogwalker {*/
+/*    margin: auto;*/
+/*    width: 45%;*/
+/*}*/
+
+/*#uniqueIdDW {*/
+/*    margin-left: 4%;*/
+/*    width: 90%;*/
+/*}*/
+
+/*#lastNameDW, #nameDW, #middleNameDW, #birthDateDW, #phoneNumberDW {*/
+/*    margin-left: 4%;*/
+/*    width: 90%;*/
+/*}*/
+
+/*#emailDW {*/
+/*    margin-left: 4%;*/
+/*    width: 60%;*/
+/*}*/
+
+/*#selectDomainsDW {*/
+/*    width: 30%;*/
+/*}*/
+
+/*#createButton {*/
+/*    margin-left: 4%;*/
+/*    width: 90%;*/
+/*}*/
+
+/*#menu {*/
+/*    color: chartreuse;*/
+/*    text-align: center;*/
+/*    float: left;*/
+/*    position: fixed;*/
+/*    margin-left: 3%;*/
+/*    margin-top: 2%;*/
+/*}*/
+
+/*#menuTable {*/
+/*    background: dodgerblue;*/
+/*}*/
+
+/*#menuButton1, #menuButton2, #menuButton3, #menuButton4 {*/
+/*    width: 95%;*/
+/*}*/
+
+/*#contentDogWalkerPage {*/
+/*    margin: 0 15%;*/
+/*    border: 3px solid gray;*/
+/*}*/
+
+/*#footerDogWalker {*/
+/*    background: aquamarine;*/
+/*    height: 5%;*/
+/*    width: 100%;*/
+/*}*/
+
+/*#inputLastNameDW {*/
+/*    text-align: center;*/
+/*    color: red;*/
+/*    font-size: 20px;*/
+/*}*/
+
+/*#inputNameDW {*/
+/*    text-align: center;*/
+/*    color: red;*/
+/*    font-size: 20px;*/
+/*}*/
+
+/*#inputMiddleNameDW {*/
+/*    text-align: center;*/
+/*    color: red;*/
+/*    font-size: 20px;*/
+/*}*/
+
+/*#inputBirthdayDW {*/
+/*    text-align: center;*/
+/*    color: red;*/
+/*    font-size: 20px;*/
+/*}*/
+
+/*#inputPhoneDW {*/
+/*    text-align: center;*/
+/*    color: red;*/
+/*    font-size: 20px;*/
+/*}*/
+
+/*#inputEmailDW {*/
+/*    text-align: center;*/
+/*    color: red;*/
+/*    font-size: 20px;*/
+/*}*/
