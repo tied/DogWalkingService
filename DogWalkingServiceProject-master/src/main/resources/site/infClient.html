@@ -12,8 +12,6 @@
 </head>
 <body>
 
-<!--<img src="/plugins/servlet/servlet-inf/site/images/dogs.jpg" id="imgDogs">-->
-
 <div class="dropdown">
     <button class="dropbtn">Dropdown</button>
     <div class="dropdown-content">
@@ -25,49 +23,9 @@
     </div>
 </div>
 
-
-<!--<div id="menu">-->
-<!--    <table id="menuTable">-->
-<!--        <tr>-->
-<!--            <td>-->
-<!--                Menu-->
-<!--            </td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--            <td>-->
-<!--                <a href="/plugins/servlet/servlet-inf/site/mainPage.html">-->
-<!--                    <input type="button" id="menuButton1" value="Back to main page">-->
-<!--                </a>-->
-<!--            </td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--            <td>-->
-<!--                <a href="/plugins/servlet/servlet-inf/site/infDog.html">-->
-<!--                    <input type="button" id="menuButton2" value="Go to pets">-->
-<!--                </a>-->
-<!--            </td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--            <td>-->
-<!--                <a href="/plugins/servlet/servlet-inf/site/infDogWalker.html">-->
-<!--                    <input type="button" id="menuButton3" value="Go to dogwalkers">-->
-<!--                </a>-->
-<!--            </td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--            <td>-->
-<!--                <a href="/plugins/servlet/servlet-inf/site/infRequestWalk.html">-->
-<!--                    <input type="button" id="menuButton4" value="Go to requests">-->
-<!--                </a>-->
-<!--            </td>-->
-<!--        </tr>-->
-<!--    </table>-->
-<!--</div>-->
-
-
 <div id="newClt"></div>
 
-<div id="contentClientPage">
+<div class="allContent" id="contentClientPage">
 
     <h1 class="center">Work with clients</h1>
 
@@ -85,110 +43,109 @@
 
     <br>
 
-
-
-
     <div class="mainTable" id="clientTable"></div>
 
+    <br>
 
+    <div class="right">
 
-<!--    <h2>Create client</h2>-->
+        <table class="createTable" id="createClientTable">
+            <caption id="createCaption">Create client</caption>
+            <tr>
+                <td>
+                    Last name:
+                </td>
+                <td>
+                    <input type="text" onclick="scriptInfClient().inputValueLastName()" class="inputString"
+                           id="lastName">
+                    <div id="inputLastName"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Name:
+                </td>
+                <td>
+                    <input type="text" onclick="scriptInfClient().inputValueName()" class="inputString"
+                           id="name" >
+                    <div id="inputName"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Middle name:
+                </td>
+                <td>
+                    <input type="text" onclick="scriptInfClient().inputValueMiddleName()" class="inputString"
+                           id="middleName" >
+                    <div id="inputMiddleName"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Birth date:
+                </td>
+                <td>
+                    <input type="date" onclick="scriptInfClient().inputValueBirthday()" class="inputString"
+                           id="birthDate" name="date" required>
+                    <div id="inputBirthday"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Phone number:
+                </td>
+                <td>
+                    <input type="text" onclick="scriptInfClient().inputValuePhone()" class="inputString"
+                           id="phoneNumber">
+                    <div id="inputPhone"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Email:
+                </td>
+                <td>
+                    <input type="text" onclick="scriptInfClient().inputValueEmail()" class="inputString"
+                           id="email">
+                    <select class="selectEmail" id="selectDomains">
+                        <option value="@mail.ru">
+                            @mail.ru
+                        </option>
+                        <option value="@yandex.ru">
+                            @yandex.ru
+                        </option>
+                        <option value="@gmail.com">
+                            @gmail.com
+                        </option>
+                    </select>
+                    <div id="inputEmail"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Address:
+                </td>
+                <td>
+                    <input type="text" onclick="scriptInfClient().inputValueAddress()" class="inputString"
+                           id="address">
+                    <div id="inputAddress"></div>
+                </td>
+            </tr>
+            <tr>
+                <td><input class="button" type="button" id="createButton" onclick="scriptInfClient().crt()" value="create"></td>
+            </tr>
+        </table>
 
-
-    <table class="createTable" id="createClientTable">
-        <caption>Create client</caption>
-        <tr>
-            <td>
-                Last name:
-            </td>
-            <td>
-                <input class="inputText" type="text" onclick="scriptInfClient().inputValueLastName()" class="inputClient"
-                       id="lastName" placeholder="Default">
-                <div id="inputLastName"></div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Name:
-            </td>
-            <td>
-                <input class="inputText" type="text" onclick="scriptInfClient().inputValueName()" class="inputClient"
-                       id="name" placeholder="Default">
-                <div id="inputName"></div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Middle name:
-            </td>
-            <td>
-                <input class="inputText" type="text" onclick="scriptInfClient().inputValueMiddleName()" class="inputClient"
-                       id="middleName" placeholder="Default">
-                <div id="inputMiddleName"></div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Birth date:
-            </td>
-            <td>
-                <input class="inputText" type="date" onclick="scriptInfClient().inputValueBirthday()" class="inputClient, form-control"
-                       id="birthDate" placeholder="d.MMM.yy" name="date" required>
-                <div id="inputBirthday"></div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Phone number:
-            </td>
-            <td>
-                <input class="inputText" type="text" onclick="scriptInfClient().inputValuePhone()" class="inputClient"
-                       id="phoneNumber" placeholder="Default">
-                <div id="inputPhone"></div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Email:
-            </td>
-            <td>
-                <input class="inputEmail" type="text" onclick="scriptInfClient().inputValueEmail()" class="inputClient"
-                       id="email" placeholder="something">
-                <select class="selectEmail" id="selectDomains">
-                    <option value="@mail.ru">
-                        @mail.ru
-                    </option>
-                    <option value="@yandex.ru">
-                        @yandex.ru
-                    </option>
-                    <option value="@gmail.com">
-                        @gmail.com
-                    </option>
-                </select>
-                <div id="inputEmail"></div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Address:
-            </td>
-            <td>
-                <input class="inputText" type="text" onclick="scriptInfClient().inputValueAddress()" class="inputClient"
-                       id="address" placeholder="Default">
-                <div id="inputAddress"></div>
-            </td>
-        </tr>
-        <tr>
-            <td><input class="button" type="button" id="createButton" onclick="scriptInfClient().crt()" value="create"></td>
-        </tr>
-    </table>
+    </div>
 
     <br>
 
     <div id="out"></div>
 
-    <div id="autor">&copy; Sorokin Evgeniy</div>
 </div>
+
+<div id="autor">&copy; Sorokin Evgeniy</div>
 
 </body>
 </html>

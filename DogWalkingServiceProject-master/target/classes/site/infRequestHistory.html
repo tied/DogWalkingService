@@ -5,139 +5,56 @@
   <title>Request History</title>
 
   <script src="/plugins/servlet/servlet-inf/site/js/scriptInfRequestHistory.js" type="text/javascript"></script>
-  <link href="/plugins/servlet/servlet-inf/site/css/styleRequestHistory.css" rel="stylesheet"/>
+  <link href="/plugins/servlet/servlet-inf/site/css/styleClient.css" rel="stylesheet"/>
 
 
 </head>
 
 <body>
 
-<div id="menu">
-  <table id="menuTable">
-    <tr>
-      <td>
-        Menu
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <a href="/plugins/servlet/servlet-inf/site/mainPage.html">
-          <input type="button" id="menuButton1" value="Back to main page">
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <a href="/plugins/servlet/servlet-inf/site/infDog.html">
-          <input type="button" id="menuButton2" value="Go to pets">
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <a href="/plugins/servlet/servlet-inf/site/infDogWalker.html">
-          <input type="button" id="menuButton3" value="Go to dogwalkers">
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <a href="/plugins/servlet/servlet-inf/site/infRequestWalk.html">
-          <input type="button" id="menuButton4" value="Go to requests">
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <a href="/plugins/servlet/servlet-inf/site/infClient.html">
-          <input type="button" id="menuButton5" value="Go to clients">
-        </a>
-      </td>
-    </tr>
-  </table>
+<div class="dropdown">
+  <button class="dropbtn">Dropdown</button>
+  <div class="dropdown-content">
+    <a href="/plugins/servlet/servlet-inf/site/mainPage.html">main page</a>
+    <a href="/plugins/servlet/servlet-inf/site/infDog.html">pets</a>
+    <a href="/plugins/servlet/servlet-inf/site/infDogWalker.html">dogwalkers</a>
+    <a href="/plugins/servlet/servlet-inf/site/infRequestWalk.html">requests</a>
+    <a href="/plugins/servlet/servlet-inf/site/infClient.html">client</a>
+  </div>
 </div>
 
-<div id="contentHistoryPage">
+<div class="allContent" id="contentHistoryPage">
 
-  <h1>Work with History Request</h1>
+  <h1 class="center">Work with History Request</h1>
 
-  <h2>Search request</h2>
+  <h2 class="center">Search request</h2>
 
-
-  <div id="topForm"></div>
-
-<!--  <form id="myFormReq" action="#" onsubmit="scriptInfRequestHistory().formFindReq()">-->
-<!--    <table id="findReq">-->
-<!--      <tr>-->
-<!--        <td>Enter unique id request</td>-->
-<!--      </tr>-->
-
-<!--      <tr>-->
-<!--        <td><input type=text name="term" id="uniqueIdReq" oninput="scriptInfRequestHistory().tableSearch()"></td>-->
-<!--      </tr>-->
-
-<!--      <tr>-->
-<!--        <td>-->
-<!--          <input type="button" onclick="scriptInfRequestHistory().addFromBdReqHistory()" value="get all requests for History">-->
-<!--          <input type="button" onclick="scriptInfRequestHistory().clearAllHistory()" value="hide all requests">-->
-
-<!--          <select id="selectHistoryOwners" onchange="scriptInfRequestHistory().loadInfFromOwners()">-->
-<!--            <option value="default"> default </option>>-->
-<!--          </select>-->
-
-<!--          <select id="selectHistoryDogs" >-->
-<!--            <option value="default"> default </option>>-->
-<!--          </select>-->
-
-<!--          <select id="selectHistoryWalkers" >-->
-<!--            <option value="default"> default </option>>-->
-<!--          </select>-->
-
-<!--          <script>-->
-<!--            scriptInfRequestHistory().loadOwners();-->
-<!--            scriptInfRequestHistory().loadPets();-->
-<!--            scriptInfRequestHistory().loadWalkers();-->
-<!--          </script>-->
-
-<!--          <input type="button" id="sendButtonHistory" onclick="scriptInfRequestHistory().requestHistory()">-->
-<!--        </td>-->
-<!--      </tr>-->
-<!--    </table>-->
-<!--  </form>-->
+  <div class="main" id="topForm"></div>
 
   <script>
     scriptInfRequestHistory().createForm();
   </script>
 
+  <br>
 
-  <div class="content">
+<!--  <div class="content">-->
+
+<!--    <br>-->
+<!--    &lt;!&ndash;пока не ясно что это&ndash;&gt;-->
+<!--    <div id="findTableReq"></div>-->
+
+<!--    <br>-->
     <br>
-    <!--пока не ясно что это-->
-    <div id="findTableReq"></div>
-
-    <br>
-
     <!--это заранее подготовленный див для таблицы-->
-    <div id="historyTable"></div>
+    <div class="mainTable" id="historyTable"></div>
 
     <br>
-  </div>
 
-
-
-<!--а это путсая табличка для графиков. пока не понятно нужна ли-->
-  <table id = "charts">
-    <tr>
-      <td>
-        <div id="chart1"></div>
-      </td>
-      <td>
-        <div id="chart2"></div>
-      </td>
-    </tr>
-  </table>
-
+<!--  </div>-->
 
 </div>
+
+<div id="autor">&copy; Sorokin Evgeniy</div>
+
 </body>
 </html>

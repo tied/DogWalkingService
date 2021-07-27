@@ -29,6 +29,10 @@ body { color: #112d39; font-family: 'Comfortaa', cursive;
     font-size: 12px;
 }
 
+#createCaption {
+    font-size: 1.5em;
+}
+
 .aui-header {
     background: none;
     color: #112d39;
@@ -99,7 +103,7 @@ body { color: #112d39; font-family: 'Comfortaa', cursive;
     padding: 0;
 }
 
-.inputText {
+.inputString, .inputText {
     border: none;
     text-align: center;
     background-color: #112d39;
@@ -111,7 +115,7 @@ body { color: #112d39; font-family: 'Comfortaa', cursive;
     padding: 0;
 }
 
-.inputEmail {
+#email {
     border: none;
     text-align: center;
     background-color: #112d39;
@@ -124,17 +128,17 @@ body { color: #112d39; font-family: 'Comfortaa', cursive;
 }
 
 
-.inputText::-webkit-input-placeholder {
+.inputString::-webkit-input-placeholder {
     color: #bfc3cc;
 }
-.inputText::-moz-placeholder {
+.inputString::-moz-placeholder {
     color: #bfc3cc;
 }
 
-.inputEmail::-webkit-input-placeholder {
+#email::-webkit-input-placeholder {
     color: #bfc3cc;
 }
-.inputEmail::-moz-placeholder {
+#email::-moz-placeholder {
     color: #bfc3cc;
 }
 
@@ -161,8 +165,6 @@ body { color: #112d39; font-family: 'Comfortaa', cursive;
 
 
 #tableMain {
-    margin-left: 170px;
-    margin-right: 170px;
     border: none;
     border-spacing: 0px;
     border-collapse: collapse;
@@ -171,14 +173,15 @@ body { color: #112d39; font-family: 'Comfortaa', cursive;
 
 
 .createTable {
-
-    margin-left: 170px;
-    margin-right: 170px;
     color: #bfc3cc;
     position: relative;
-
+    width: 100%;
 }
 
+.right {
+    width: 40%;
+    margin: 0 30%;
+}
 
 .center {
     position: relative;
@@ -186,6 +189,16 @@ body { color: #112d39; font-family: 'Comfortaa', cursive;
     margin-left: 170px;
     margin-right: 170px
 }
+
+/*************************************************************/
+
+.allContent {
+    margin-left: 170px;
+    margin-right: 170px
+}
+
+
+/*************************************************************/
 
 .dropbtn {
     background-color: rgba(191,195,204, 0.4);

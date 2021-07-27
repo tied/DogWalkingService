@@ -51,14 +51,21 @@ var additionalRequestHistoryFunctions = function () {
         parent.innerHTML = "";
 
         let table = document.createElement("table");
-        table.id = "tableHistoryRequest";
+        table.id = "tableMain";
         let row = document.createElement("tr");
+        row.classList.add("rowTh");
+
         table.append(row);
 
         if (data != null) {
-            createTitleTableHistory(table, row);
+            createTitleTableHistory(row);
 
-            addDataTableHistory(data, table);
+            let tbody = document.createElement("tbody");
+
+            addDataTableHistory(data, tbody);
+
+            table.append(tbody);
+
             parent.append(table);
         }
 
@@ -130,36 +137,36 @@ var additionalRequestHistoryFunctions = function () {
     }
 
 
-    var createTitleTableHistory = function (table, row) {
-        let col1 = document.createElement("td");
+    var createTitleTableHistory = function (row) {
+        let col1 = document.createElement("th");
         col1.innerHTML = "Owner";
         row.append(col1);
 
-        let col2 = document.createElement("td");
+        let col2 = document.createElement("th");
         col2.innerHTML = "Pet";
         row.append(col2);
 
-        let col3 = document.createElement("td");
+        let col3 = document.createElement("th");
         col3.innerHTML = "Request place";
         row.append(col3);
 
-        let col4 = document.createElement("td");
+        let col4 = document.createElement("th");
         col4.innerHTML = "Time walk";
         row.append(col4);
 
-        let col5 = document.createElement("td");
+        let col5 = document.createElement("th");
         col5.innerHTML = "Walk duration,min";
         row.append(col5);
 
-        let col6 = document.createElement("td");
+        let col6 = document.createElement("th");
         col6.innerHTML = "Request status";
         row.append(col6);
 
-        let col7 = document.createElement("td");
+        let col7 = document.createElement("th");
         col7.innerHTML = "ID request";
         row.append(col7);
 
-        let col8 = document.createElement("td");
+        let col8 = document.createElement("th");
         col8.innerHTML = "Dog walker";
         row.append(col8);
     }
@@ -174,6 +181,7 @@ var additionalRequestHistoryFunctions = function () {
 
             let addRow = document.createElement('tr');
             addRow.id = "row" + i;
+            addRow.classList.add("row");
             table.append(addRow);
 
             for (let j = 0; j < 8; j++) {

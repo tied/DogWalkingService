@@ -49,7 +49,7 @@ var additionalClientFunctions = function () {
     }
 
     that.checkValid = function() {
-        let valid = document.getElementsByClassName("inputClient");
+        let valid = document.getElementsByClassName("inputString");
 
         let check = true;
 
@@ -244,7 +244,7 @@ var additionalClientFunctions = function () {
                 }else if(i === 4){
                     let calendar = document.createElement("input");
                     calendar.type = "date";
-                    calendar.className = "form-control";
+                    // calendar.className = "form-control";
                     calendar.value = key;
                     addCol.append(calendar);
                 }
@@ -272,6 +272,7 @@ var additionalClientFunctions = function () {
 
     var saveButton = function(row) {
         let saveButton = document.createElement("input");
+        buttonEdit.classList.add("button");
         saveButton.type = "button";
         saveButton.value = "Save";
 

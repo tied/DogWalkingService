@@ -35,16 +35,23 @@ var additionalRequestWalkFunctions = function () {
         parent.innerHTML = "";
 
         let table = document.createElement("table");
+        table.id = "tableMain";
         let row = document.createElement("tr");
-        table.append(row);
+        row.classList.add("rowTh");
 
-        createTitleTableReq(table, row);
+        createTitleTableReq(row);
 
-        let col = document.createElement("td");
+        let col = document.createElement("th");
         col.innerHTML = "Pick request";
         row.append(col);
+        table.append(row);
 
-        addDataTableReq(data, table);
+        let tbody = document.createElement("tbody");
+
+        addDataTableReq(data, tbody);
+
+        table.append(tbody);
+
         parent.append(table);
 
         createChartDogWalkers(data, getChartWalkers());
@@ -72,7 +79,7 @@ var additionalRequestWalkFunctions = function () {
     }
 
     that.checkValid = function () {
-        let valid = document.getElementsByClassName("inputReq");
+        let valid = document.getElementsByClassName("inputString");
 
         let check = true;
 
@@ -161,36 +168,36 @@ var additionalRequestWalkFunctions = function () {
     }
 
 
-    var createTitleTableReq = function (table, row) {
-        let col1 = document.createElement("td");
+    var createTitleTableReq = function (row) {
+        let col1 = document.createElement("th");
         col1.innerHTML = "Owner";
         row.append(col1);
 
-        let col2 = document.createElement("td");
+        let col2 = document.createElement("th");
         col2.innerHTML = "Pet";
         row.append(col2);
 
-        let col3 = document.createElement("td");
+        let col3 = document.createElement("th");
         col3.innerHTML = "Request place";
         row.append(col3);
 
-        let col4 = document.createElement("td");
+        let col4 = document.createElement("th");
         col4.innerHTML = "Time walk";
         row.append(col4);
 
-        let col5 = document.createElement("td");
+        let col5 = document.createElement("th");
         col5.innerHTML = "Walk duration,min";
         row.append(col5);
 
-        let col6 = document.createElement("td");
+        let col6 = document.createElement("th");
         col6.innerHTML = "Request status";
         row.append(col6);
 
-        let col7 = document.createElement("td");
+        let col7 = document.createElement("th");
         col7.innerHTML = "ID request";
         row.append(col7);
 
-        let col8 = document.createElement("td");
+        let col8 = document.createElement("th");
         col8.innerHTML = "Dog walker";
         row.append(col8);
     }
@@ -324,6 +331,7 @@ var additionalRequestWalkFunctions = function () {
 
             let addRow = document.createElement('tr');
             addRow.id = "row" + i;
+            addRow.classList.add("row");
             table.append(addRow);
 
             for (let j = 0; j < 9; j++) {
@@ -380,6 +388,7 @@ var additionalRequestWalkFunctions = function () {
     var getAllWalkers = function () {
         let parent = document.createElement("select");
         parent.id = "selectWalkerReq";
+        parent.classList.add("select");
 
         let xhttp = new XMLHttpRequest();
 
@@ -417,6 +426,7 @@ var additionalRequestWalkFunctions = function () {
 
     var pickRequest = function (dogId) {
         let butn = document.createElement("input");
+        butn.classList.add("button");
         butn.type = "button";
         butn.value = "Pick request";
 
@@ -451,6 +461,7 @@ var additionalRequestWalkFunctions = function () {
         parent.id = id;
 
         let finishButn = document.createElement("input");
+        finishButn.classList.add("button");
         finishButn.type = "button";
         finishButn.value = "Finish request";
 

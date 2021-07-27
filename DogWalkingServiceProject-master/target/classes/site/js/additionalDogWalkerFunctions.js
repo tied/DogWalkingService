@@ -1,10 +1,3 @@
-// sendSuccessFindDogWalker
-// sendSuccessAddFromBdDW
-// checkValid
-// sendSuccessCreateDogWalker
-// sendSuccessSaveChanges
-// sendSuccessDeleteDogWalker
-
 var additionalDogWalkerFunctions = function () {
 
     var that = {};
@@ -29,22 +22,28 @@ var additionalDogWalkerFunctions = function () {
         parent.innerHTML = "";
 
         let table = document.createElement("table");
+        table.id = "tableMain";
         let row = document.createElement("tr");
+        row.classList.add("rowTh");
 
         createTitleTableDW(row);
 
-        let col = document.createElement("td");
+        let col = document.createElement("th");
         col.innerHTML = "Edit";
         row.append(col);
         table.append(row);
 
-        addDataTableDW(data, table, idEditRow);
+        let tbody = document.createElement("tbody");
+
+        addDataTableDW(data, tbody, idEditRow);
+
+        table.append(tbody);
 
         parent.append(table);
     }
 
     that.checkValid = function () {
-        let valid = document.getElementsByClassName("inputDogWalker");
+        let valid = document.getElementsByClassName("inputString");
 
         let check = true;
 
@@ -82,7 +81,7 @@ var additionalDogWalkerFunctions = function () {
         document.getElementById("middleNameDW").value = "";
         document.getElementById("birthDateDW").value = "";
         document.getElementById("phoneNumberDW").value = "";
-        document.getElementById("emailDW").value = "";
+        document.getElementById("email").value = "";
 
         let inf = document.getElementById("newDgWlkr");
         inf.innerText = "";
@@ -125,35 +124,35 @@ var additionalDogWalkerFunctions = function () {
 
 
     function createTitleTableDW(row) {
-        let col1 = document.createElement("td");
+        let col1 = document.createElement("th");
         col1.innerHTML = "Unique ID";
         row.append(col1);
 
-        let col2 = document.createElement("td");
+        let col2 = document.createElement("th");
         col2.innerHTML = "Last name";
         row.append(col2);
 
-        let col3 = document.createElement("td");
+        let col3 = document.createElement("th");
         col3.innerHTML = "Name";
         row.append(col3);
 
-        let col4 = document.createElement("td");
+        let col4 = document.createElement("th");
         col4.innerHTML = "Middle name";
         row.append(col4);
 
-        let col5 = document.createElement("td");
+        let col5 = document.createElement("th");
         col5.innerHTML = "Birth date";
         row.append(col5);
 
-        let col6 = document.createElement("td");
+        let col6 = document.createElement("th");
         col6.innerHTML = "Phone number";
         row.append(col6);
 
-        let col7 = document.createElement("td");
+        let col7 = document.createElement("th");
         col7.innerHTML = "Email";
         row.append(col7);
 
-        let col8 = document.createElement("td");
+        let col8 = document.createElement("th");
         col8.innerHTML = "Status";
         row.append(col8);
     }
@@ -271,6 +270,7 @@ var additionalDogWalkerFunctions = function () {
 
     var saveButton = function (row) {
         let saveButton = document.createElement("input");
+        buttonEdit.classList.add("button");
         saveButton.type = "button";
         saveButton.value = "Save";
 
@@ -305,6 +305,7 @@ var additionalDogWalkerFunctions = function () {
         for (let i = 0; i < array.length; i++) {
             let addRow = document.createElement('tr');
             addRow.id = "row" + i;
+            addRow.classList.add("row");
             table.append(addRow);
 
             if (addRow.id === idEditRow) {
@@ -362,6 +363,7 @@ var additionalDogWalkerFunctions = function () {
 
     var createButnEdit = function () {
         let buttonEdit = document.createElement("input");
+        buttonEdit.classList.add("button");
         buttonEdit.type = "button";
         buttonEdit.value = "Edit";
 
@@ -384,6 +386,7 @@ var additionalDogWalkerFunctions = function () {
 
     var createButnDelete = function () {
         let buttonDelete = document.createElement("input");
+        buttonDelete.classList.add("button");
         buttonDelete.type = "button";
         buttonDelete.value = "Delete";
 

@@ -25,8 +25,8 @@ var scriptInfClient = function() {
 
         that.scripts.createForm();
 
-        var myForm = document.getElementById("myFormReq");
-        myForm.onsubmit=that.formFindClient;
+        // var myForm = document.getElementById("myFormReq");
+        // myForm.onsubmit=that.formFindClient;
         var col1 = document.getElementById("col1");
         var col2 = document.getElementById("col2");
         var col3 = document.getElementById("col3");
@@ -35,7 +35,7 @@ var scriptInfClient = function() {
         form.onsubmit = that.formFindClient;
 
         col1.innerHTML = "Enter unique id client";
-        col2.innerHTML = "<input class=\"inputText\" placeholder=\"Enter unique id request\" type=text id=\"uniqueId\">";
+        col2.innerHTML = "<input class=\"inputText\" placeholder=\"Enter unique id client\" type=text id=\"uniqueId\">";
         col3.innerHTML =
             "<input class=\"button\" type=submit name=\"submit\" value=\"find\" id=\"new\">\n" +
             "<input class=\"button\" type=\"button\" onclick=\"scriptInfClient().addFromBd()\" value=\"get all clients\">\n" +

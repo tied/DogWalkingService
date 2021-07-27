@@ -25,13 +25,17 @@ var scriptInfRequestWalk = function () {
         var col1 = document.getElementById("col1");
         var col2 = document.getElementById("col2");
         var col3 = document.getElementById("col3");
+
+        var form = document.getElementById("myFormReq");
+        form.onsubmit = that.formFindReq;
+
         col1.innerHTML = "Enter unique id request";
-        col2.innerHTML = "<input type=text id=\"uniqueIdReq\">";
+        col2.innerHTML = "<input class=\"inputText\" placeholder=\"Enter unique id request\" type=text id=\"uniqueIdReq\">";
         col3.innerHTML =
-            "<input type=submit name=\"submit\" value=\"find\" id=\"new\">\n" +
-            "<input type=\"button\" onclick=\"scriptInfRequestWalk().addFromBdReq()\" value=\"get all requests\">\n" +
-            "<input type=\"button\" onclick=\"scriptInfRequestWalk().clearReq()\" value=\"hide found request\">\n" +
-            "<input type=\"button\" onclick=\"scriptInfRequestWalk().clearAllReq()\" value=\"hide all requests\">"
+            "<input class=\"button\" type=submit name=\"submit\" value=\"find\" id=\"new\">\n" +
+            "<input class=\"button\" type=\"button\" onclick=\"scriptInfRequestWalk().addFromBdReq()\" value=\"get all requests\">\n" +
+            "<input class=\"button\" type=\"button\" onclick=\"scriptInfRequestWalk().clearReq()\" value=\"hide found request\">\n" +
+            "<input class=\"button\" type=\"button\" onclick=\"scriptInfRequestWalk().clearAllReq()\" value=\"hide all requests\">"
     }
 
     that.formFindReq = function () {

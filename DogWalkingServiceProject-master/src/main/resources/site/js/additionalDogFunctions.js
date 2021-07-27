@@ -27,22 +27,28 @@ var additionalDogFunctions = function () {
         parent.innerHTML = "";
 
         let table = document.createElement("table");
+        table.id = "tableMain"
         let row = document.createElement("tr");
+        row.classList.add("rowTh")
 
         createTitleTableD(row);
 
-        let col = document.createElement("td");
+        let col = document.createElement("th");
         col.innerHTML = "Edit";
         row.append(col);
         table.append(row);
 
-        addDataTableD(data, table, idEditRow);
+        let tbody = document.createElement("tbody");
+
+        addDataTableD(data, tbody, idEditRow);
+
+        table.append(tbody);
 
         parent.append(table);
     }
 
     that.checkValid = function () {
-        let valid = document.getElementsByClassName("inputDog");
+        let valid = document.getElementsByClassName("inputString");
 
         let check = true;
 
@@ -119,39 +125,39 @@ var additionalDogFunctions = function () {
     }
 
     var createTitleTableD = function (row) {
-        let col1 = document.createElement("td");
+        let col1 = document.createElement("th");
         col1.innerHTML = "Unique ID";
         row.append(col1);
 
-        let col2 = document.createElement("td");
+        let col2 = document.createElement("th");
         col2.innerHTML = "Dog name";
         row.append(col2);
 
-        let col3 = document.createElement("td");
+        let col3 = document.createElement("th");
         col3.innerHTML = "Dog Gender";
         row.append(col3);
 
-        let col4 = document.createElement("td");
+        let col4 = document.createElement("th");
         col4.innerHTML = "Dog Birthday";
         row.append(col4);
 
-        let col5 = document.createElement("td");
+        let col5 = document.createElement("th");
         col5.innerHTML = "Breed";
         row.append(col5);
 
-        let col6 = document.createElement("td");
+        let col6 = document.createElement("th");
         col6.innerHTML = "Color";
         row.append(col6);
 
-        let col7 = document.createElement("td");
+        let col7 = document.createElement("th");
         col7.innerHTML = "Dog character";
         row.append(col7);
 
-        let col8 = document.createElement("td");
+        let col8 = document.createElement("th");
         col8.innerHTML = "Dog status";
         row.append(col8);
 
-        let col9 = document.createElement("td");
+        let col9 = document.createElement("th");
         col9.innerHTML = "Owner";
         row.append(col9);
     }
@@ -272,7 +278,7 @@ var additionalDogFunctions = function () {
     var createCalendar = function (col) {
         let calendar = document.createElement("input");
         calendar.type = "date";
-        calendar.className = "form-control";
+        // calendar.className = "form-control";
         col.append(calendar);
     }
 
@@ -285,6 +291,7 @@ var additionalDogFunctions = function () {
 
     var saveButton = function (row) {
         let saveButton = document.createElement("input");
+        buttonEdit.classList.add("button");
         saveButton.type = "button";
         saveButton.value = "Save";
 
@@ -332,6 +339,7 @@ var additionalDogFunctions = function () {
         for (let i = 0; i < array.length; i++) {
             let addRow = document.createElement('tr');
             addRow.id = "row" + i;
+            addRow.classList.add("row");
             table.append(addRow);
 
             if (addRow.id === idEditRow) {
@@ -392,6 +400,7 @@ var additionalDogFunctions = function () {
 
     var createButnEdit = function () {
         let buttonEdit = document.createElement("input");
+        buttonEdit.classList.add("button");
         buttonEdit.type = "button";
         buttonEdit.value = "Edit";
 
@@ -414,6 +423,7 @@ var additionalDogFunctions = function () {
 
     var createButnDelete = function () {
         let buttonDelete = document.createElement("input");
+        buttonDelete.classList.add("button");
         buttonDelete.type = "button";
         buttonDelete.value = "Delete";
 

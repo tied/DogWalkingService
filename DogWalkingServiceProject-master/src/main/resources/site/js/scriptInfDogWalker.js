@@ -1,17 +1,3 @@
-// formFindDogWalker()
-// addFromBdDW()
-// clearDogWalker()
-// clearAllDogWalkers()
-//
-// inputValueLastNameDW()
-// inputValueNameDW()
-// inputValueMiddleNameDW()
-// inputValueBirthdayDW()
-// inputValuePhoneDW()
-// inputValueEmailDW()
-//
-// crtDW()
-
 var scriptInfDogWalker = function () {
 
     var that = {
@@ -27,13 +13,17 @@ var scriptInfDogWalker = function () {
         var col1 = document.getElementById("col1");
         var col2 = document.getElementById("col2");
         var col3 = document.getElementById("col3");
+
+        var form = document.getElementById("myFormReq");
+        form.onsubmit = that.formFindDogWalker;
+
         col1.innerHTML = "Enter unique id dog walker";
-        col2.innerHTML = "<input type=text id=\"uniqueIdDW\">";
+        col2.innerHTML = "<input class=\"inputText\" placeholder=\"Enter unique id dog walker\" type=text id=\"uniqueIdDW\">";
         col3.innerHTML =
-            "<input type=submit name=\"submit\" value=\"find\" id=\"newDW\">\n" +
-            "<input type=\"button\" onclick=\"scriptInfDogWalker().addFromBdDW()\" value=\"get all dog walkers\">\n" +
-            "<input type=\"button\" onclick=\"scriptInfDogWalker().clearDogWalker()\" value=\"hide found dog walker\">\n" +
-            "<input type=\"button\" onclick=\"scriptInfDogWalker().clearAllDogWalkers()\" value=\"hide all dog walkers\">"
+            "<input class=\"button\" type=submit name=\"submit\" value=\"find\" id=\"newDW\">\n" +
+            "<input class=\"button\" type=\"button\" onclick=\"scriptInfDogWalker().addFromBdDW()\" value=\"get all dog walkers\">\n" +
+            "<input class=\"button\" type=\"button\" onclick=\"scriptInfDogWalker().clearDogWalker()\" value=\"hide found dog walker\">\n" +
+            "<input class=\"button\" type=\"button\" onclick=\"scriptInfDogWalker().clearAllDogWalkers()\" value=\"hide all dog walkers\">"
 
     }
 
@@ -99,7 +89,7 @@ var scriptInfDogWalker = function () {
                 middleName: document.getElementById("middleNameDW").value,
                 birthDate: document.getElementById("birthDateDW").value,
                 phoneNumber: document.getElementById("phoneNumberDW").value,
-                email: document.getElementById("emailDW").value
+                email: document.getElementById("email").value
                     +document.getElementById("selectDomainsDW").value,
             }
 

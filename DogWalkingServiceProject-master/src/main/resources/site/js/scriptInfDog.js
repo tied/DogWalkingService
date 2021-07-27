@@ -28,13 +28,17 @@ var scriptInfDog = function () {
         var col1 = document.getElementById("col1");
         var col2 = document.getElementById("col2");
         var col3 = document.getElementById("col3");
-        col1.innerHTML = "Enter unique id client";
-        col2.innerHTML = "<input type=text id=\"uniqueIdD\">";
+
+        var form = document.getElementById("myFormReq");
+        form.onsubmit = that.formFindDog;
+
+        col1.innerHTML = "Enter unique id dog";
+        col2.innerHTML = "<input class=\"inputText\" placeholder=\"Enter unique id dog\" type=text id=\"uniqueIdD\">";
         col3.innerHTML =
-            "<input type=submit name=\"submit\" value=\"find\" id=\"newD\">\n" +
-            "<input type=\"button\" onclick=\"scriptInfDog().addFromBdD()\" value=\"get all dogs\">\n" +
-            "<input type=\"button\" onclick=\"scriptInfDog().clearDog()\" value=\"hide found dog\">\n" +
-            "<input type=\"button\" onclick=\"scriptInfDog().clearAllDog()\" value=\"hide all dogs\">"
+            "<input class=\"button\" type=submit name=\"submit\" value=\"find\" id=\"newD\">\n" +
+            "<input class=\"button\" type=\"button\" onclick=\"scriptInfDog().addFromBdD()\" value=\"get all dogs\">\n" +
+            "<input class=\"button\" type=\"button\" onclick=\"scriptInfDog().clearDog()\" value=\"hide found dog\">\n" +
+            "<input class=\"button\" type=\"button\" onclick=\"scriptInfDog().clearAllDog()\" value=\"hide all dogs\">"
 
     }
 

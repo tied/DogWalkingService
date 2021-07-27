@@ -8,57 +8,32 @@
     </title>
 
     <script defer src="/plugins/servlet/servlet-inf/site/js/scriptInfDogWalker.js" type="text/javascript"></script>
-    <link href="/plugins/servlet/servlet-inf/site/css/styleDogWalker.css" rel="stylesheet"/>
+    <link href="/plugins/servlet/servlet-inf/site/css/styleClient.css" rel="stylesheet"/>
 
 </head>
 <body>
 
-<div id="menu">
-    <table id="menuTable">
-        <tr>
-            <td>
-                Menu
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a href="/plugins/servlet/servlet-inf/site/mainPage.html">
-                    <input type="button" id="menuButton1" value="Back to main page">
-                </a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a href="/plugins/servlet/servlet-inf/site/infClient.html">
-                    <input type="button" id="menuButton2" value="Go to clients">
-                </a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a href="/plugins/servlet/servlet-inf/site/infDog.html">
-                    <input type="button" id="menuButton3" value="Go to pets">
-                </a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a href="/plugins/servlet/servlet-inf/site/infRequestWalk.html">
-                    <input type="button" id="menuButton4" value="Go to request">
-                </a>
-            </td>
-        </tr>
-    </table>
+<div class="dropdown">
+    <button class="dropbtn">Dropdown</button>
+    <div class="dropdown-content">
+        <a href="/plugins/servlet/servlet-inf/site/mainPage.html">main page</a>
+        <a href="/plugins/servlet/servlet-inf/site/infClient.html">clients</a>
+        <a href="/plugins/servlet/servlet-inf/site/infDog.html">dogs</a>
+        <a href="/plugins/servlet/servlet-inf/site/infRequestWalk.html">requests</a>
+        <a href="/plugins/servlet/servlet-inf/site/infRequestHistory.html">history</a>
+    </div>
 </div>
+
 
 <div id="newDgWlkr"></div>
 
-<div id="contentDogWalkerPage">
-    <h1>Work with dogwalkers</h1>
+<div class="allContent" id="contentDogWalkerPage">
 
-    <h2>Search dog walker</h2>
+    <h1 class="center">Work with dogwalkers</h1>
 
-    <div id="topForm"></div>
+    <h2 class="center">Search dog walker</h2>
+
+    <div class="main" id="topForm"></div>
 
     <script>
         scriptInfDogWalker().createForm();
@@ -66,94 +41,102 @@
 
     <br>
 
-    <div id="findTableDW"></div>
+    <div class="main" id="findTableDW"></div>
 
     <br>
-    <div id="dogWalkerTable"></div>
 
-    <h2>Create dogwalker</h2>
+    <div class="mainTable" id="dogWalkerTable"></div>
 
-    <table id="createDogwalker">
-        <tr>
-            <td>
-                Last name:
-            </td>
-            <td>
-                <input type="text" onclick="scriptInfDogWalker().inputValueLastNameDW()" class="inputDogWalker"
-                       id="lastNameDW" placeholder="Default">
-                <div id="inputLastNameDW"></div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Name:
-            </td>
-            <td>
-                <input type="text" onclick="scriptInfDogWalker().inputValueNameDW()" class="inputDogWalker"
-                       id="nameDW" placeholder="Default">
-                <div id="inputNameDW"></div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Middle name:
-            </td>
-            <td><input type="text" onclick="scriptInfDogWalker().inputValueMiddleNameDW()" class="inputDogWalker"
-                       id="middleNameDW" placeholder="Default">
-                <div id="inputMiddleNameDW"></div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Birth date:
-            </td>
-            <td>
-                <input type="date" onclick="scriptInfDogWalker().inputValueBirthdayDW()" placeholder="dd.mm.yyyy"
-                       class="inputDogWalker" id="birthDateDW" name="date" required>
-                <div id="inputBirthdayDW"></div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Phone number:
-            </td>
-            <td>
-                <input type="text" onclick="scriptInfDogWalker().inputValuePhoneDW()" class="inputDogWalker"
-                       id="phoneNumberDW" placeholder="Default">
-                <div id="inputPhoneDW"></div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Email:
-            </td>
-            <td>
-                <input type="text" onclick="scriptInfDogWalker().inputValueEmailDW()" class="inputDogWalker"
-                       id="emailDW" placeholder="something@mail.ru">
-                <select id="selectDomainsDW">
-                    <option value="@mail.ru">
-                        @mail.ru
-                    </option>
-                    <option value="@yandex.ru">
-                        @yandex.ru
-                    </option>
-                    <option value="@gmail.com">
-                        @gmail.com
-                    </option>
-                </select>
-                <div id="inputEmailDW"></div>
-            </td>
-        </tr>
-        <tr>
-            <td><input type="button" id="createButton" onclick="scriptInfDogWalker().crtDW()" value="create"></td>
-        </tr>
-    </table>
+<!--    <h2>Create dogwalker</h2>-->
+
+    <div class="right">
+
+        <table class="createTable" id="createDogwalker">
+            <caption id="createCaption">Create Dogwalker</caption>
+            <tr>
+                <td>
+                    Last name:
+                </td>
+                <td>
+                    <input type="text" onclick="scriptInfDogWalker().inputValueLastNameDW()" class="inputString"
+                           id="lastNameDW" placeholder="Default">
+                    <div id="inputLastNameDW"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Name:
+                </td>
+                <td>
+                    <input type="text" onclick="scriptInfDogWalker().inputValueNameDW()" class="inputString"
+                           id="nameDW" placeholder="Default">
+                    <div id="inputNameDW"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Middle name:
+                </td>
+                <td><input type="text" onclick="scriptInfDogWalker().inputValueMiddleNameDW()" class="inputString"
+                           id="middleNameDW" placeholder="Default">
+                    <div id="inputMiddleNameDW"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Birth date:
+                </td>
+                <td>
+                    <input type="date" onclick="scriptInfDogWalker().inputValueBirthdayDW()" placeholder="dd.mm.yyyy"
+                           class="inputString" id="birthDateDW" name="date" required>
+                    <div id="inputBirthdayDW"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Phone number:
+                </td>
+                <td>
+                    <input type="text" onclick="scriptInfDogWalker().inputValuePhoneDW()" class="inputString"
+                           id="phoneNumberDW" placeholder="Default">
+                    <div id="inputPhoneDW"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Email:
+                </td>
+                <td>
+                    <input type="text" onclick="scriptInfDogWalker().inputValueEmailDW()" class="inputString"
+                           id="email" placeholder="something@mail.ru">
+                    <select class="selectEmail" id="selectDomainsDW">
+                        <option value="@mail.ru">
+                            @mail.ru
+                        </option>
+                        <option value="@yandex.ru">
+                            @yandex.ru
+                        </option>
+                        <option value="@gmail.com">
+                            @gmail.com
+                        </option>
+                    </select>
+                    <div id="inputEmailDW"></div>
+                </td>
+            </tr>
+            <tr>
+                <td><input class="button" type="button" id="createButton" onclick="scriptInfDogWalker().crtDW()" value="create"></td>
+            </tr>
+        </table>
+
+    </div>
 
     <br>
+
     <div id="outDW"></div>
 
-    <div id="footerDogWalker">&copy; Dvoryanchikov Sergey</div>
 </div>
+
+<div id="autor">&copy; Sorokin Evgeniy</div>
 
 </body>
 </html>
