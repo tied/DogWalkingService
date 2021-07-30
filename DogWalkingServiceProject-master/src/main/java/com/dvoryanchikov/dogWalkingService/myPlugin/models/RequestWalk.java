@@ -13,7 +13,7 @@ public class RequestWalk extends UniqID{
     @JsonProperty("petId")
     private String petId;
     @JsonProperty("walkDuration")
-    private int walkDuration;
+    private Double walkDuration;
     @JsonProperty("requestWalkStatus")
     private RequestWalkStatus requestWalkStatus;
     @JsonProperty("clientId")
@@ -67,11 +67,11 @@ public class RequestWalk extends UniqID{
         this.petId = petId;
     }
 
-    public int getWalkDuration() {
+    public Double getWalkDuration() {
         return walkDuration;
     }
 
-    public void setWalkDuration(int walkDuration) {
+    public void setWalkDuration(Double walkDuration) {
         this.walkDuration = walkDuration;
     }
 

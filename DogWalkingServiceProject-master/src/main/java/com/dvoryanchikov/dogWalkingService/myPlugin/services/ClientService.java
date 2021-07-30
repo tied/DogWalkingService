@@ -2,14 +2,16 @@ package com.dvoryanchikov.dogWalkingService.myPlugin.services;
 
 import com.atlassian.activeobjects.external.ActiveObjects;
 import com.atlassian.jira.component.ComponentAccessor;
+import com.atlassian.jira.issue.CustomFieldManager;
 import com.atlassian.jira.issue.Issue;
 import com.atlassian.jira.issue.MutableIssue;
 import com.atlassian.jira.issue.fields.CustomField;
-import com.atlassian.jira.user.ApplicationUser;
+import com.dvoryanchikov.dogWalkingService.myPlugin.constants.CustomFieldConstants;
 import com.dvoryanchikov.dogWalkingService.myPlugin.managers.ClientManager;
+import com.dvoryanchikov.dogWalkingService.myPlugin.managers.DogManager;
 import com.dvoryanchikov.dogWalkingService.myPlugin.models.Client;
-import com.dvoryanchikov.dogWalkingService.myPlugin.models.common.StatusResponse;
 import com.dvoryanchikov.dogWalkingService.myPlugin.services.jira.ClientIssueService;
+import com.dvoryanchikov.dogWalkingService.myPlugin.utils.CustomFieldUtils;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -20,6 +22,7 @@ public class ClientService {
     private final ClientManager clientManager;
     private final ClientIssueService clientIssueService;
 
+    private final DogService dogService;
 
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("d/MMM/yy", Locale.ENGLISH);
 
@@ -28,6 +31,7 @@ public class ClientService {
         this.ao = ao;
         clientManager = ClientManager.create(ao);
         clientIssueService = new ClientIssueService(ao);
+        dogService = DogService.create(ao);
     }
 
     public static ClientService create(ActiveObjects ao) {
@@ -44,19 +48,87 @@ public class ClientService {
 
 
 
-    public boolean createClient(Client model) throws Exception{
+    public void createClient(Client model) throws Exception{
         Issue issue = clientIssueService.create(model);
         model.setIssueId(issue.getId().toString());
-        return clientManager.save(model);
+        clientManager.save(model);
     }
 
-    public Boolean deleteClientByUniqueId(String uniqueId) {
-        return clientIssueService.deleteIssue(uniqueId) && clientManager.deleteByUniqueId(uniqueId);
+    public void deleteClientFromListener (Issue issue) throws Exception{
+        // получили из базы модель клиента, которая соответствует удаляемому issue с jira
+        Client clientByIssueId = clientManager.getByIssueId(issue.getId().toString());
+
+        String uniqueIdClient = clientByIssueId.getUniqueId();
+
+        clientManager.deleteByUniqueId(uniqueIdClient);
+
+        try {
+            deletePetsByOwnerId(uniqueIdClient);
+        } catch (Exception ex) {
+            throw new Exception(ex.getMessage());
+        }
+
+
+    }
+
+    public void deleteClientByUniqueId(String uniqueId) throws Exception{
+        clientIssueService.deleteIssue(uniqueId); // удалям из issue
+        clientManager.deleteByUniqueId(uniqueId); // удаляем из бд
+        deletePetsByOwnerId(uniqueId);
+    }
+
+    public void deletePetsByOwnerId (String ownerId) throws Exception {
+        try {
+            dogService.deleteAllPetsByOwnerId(ownerId);
+        } catch (Exception ex) {
+            throw new Exception(ex.getMessage());
+        }
+
     }
 
 
 
-    public void updateClient(Client model) throws Exception {
+    public void UpdateClientFromListener (Issue issue) throws Exception {
+
+        // получили из базы модель клиента, которая соответствует обновляемому issue с jira
+        Client ClientByIssueId = clientManager.getByIssueId(issue.getId().toString());
+
+        // используя issue, которая пришла от Jira собрали модельку клиента
+        Client model = new Client();
+
+        CustomFieldManager customFieldManager = ComponentAccessor.getCustomFieldManager();
+
+//        Object Name = issue.getCustomFieldValue(customFieldManager.getCustomFieldObject(10108L));
+        String name = CustomFieldUtils.getCustomFieldString(issue, CustomFieldConstants.CLIENT_NAME_CF_ID);
+        Object LastName = issue.getCustomFieldValue(customFieldManager.getCustomFieldObject(10109L));
+        Object MiddleName = issue.getCustomFieldValue(customFieldManager.getCustomFieldObject(10110L));
+        Object BirthDate = issue.getCustomFieldValue(customFieldManager.getCustomFieldObject(10111L));
+        Object PhoneNumber = issue.getCustomFieldValue(customFieldManager.getCustomFieldObject(10112L));
+        Object Email = issue.getCustomFieldValue(customFieldManager.getCustomFieldObject(10113L));
+        Object Address = issue.getCustomFieldValue(customFieldManager.getCustomFieldObject(10114L));
+
+
+        model.setName(name);
+        model.setLastName((String) LastName);
+        model.setMiddleName((String) MiddleName);
+        model.setBirthDate((Timestamp) BirthDate);
+        model.setPhoneNumber((Double) PhoneNumber);
+        model.setEmail((String) Email);
+        model.setAddress((String) Address);
+
+        // с помощью модельки клиента из базы дополнили новую модель айдишниками
+        model.setUniqueId(ClientByIssueId.getUniqueId());
+        model.setIssueId(ClientByIssueId.getIssueId());
+
+        // обновили модель в базе новой моделькой, собранной из пришедшей issue
+        clientManager.update(model);
+
+    }
+
+
+
+
+    public void updateClient(Client model/*, Issue issue*/) throws Exception {
         // проверку на изменения полей сделать здесь. если не изменились, то ничего не делать.
         // Если изменилось, то собрать список изменённых полей, передать их дальше в updateIssue
         // и обновить только их
@@ -67,7 +139,7 @@ public class ClientService {
         MutableIssue issue = ComponentAccessor.getIssueManager()
                 .getIssueObject(Long.parseLong(clientByUniqueId.getIssueId())); // получили id нужного тикета
 
-        // столбцы в бд
+        // кастом филды
         CustomField Name = ComponentAccessor.getCustomFieldManager().getCustomFieldObject(10108L);
         CustomField LastName = ComponentAccessor.getCustomFieldManager().getCustomFieldObject(10109L);
         CustomField MiddleName = ComponentAccessor.getCustomFieldManager().getCustomFieldObject(10110L);
@@ -76,9 +148,7 @@ public class ClientService {
         CustomField Email = ComponentAccessor.getCustomFieldManager().getCustomFieldObject(10113L);
         CustomField Address = ComponentAccessor.getCustomFieldManager().getCustomFieldObject(10114L);
 
-        // старое значение из столбца в бд
-        // была проблема в том, что мы считывали значения из бд, а типы знычений не все были стринг.
-        // надо было явно преобразовать
+        // значения из issue (не из бд)
         String customFieldValueName = (String) issue.getCustomFieldValue(Name);
         String customFieldValueLastName = (String) issue.getCustomFieldValue(LastName);
         String customFieldValueMiddleName = (String) issue.getCustomFieldValue(MiddleName);
@@ -123,7 +193,9 @@ public class ClientService {
         Map<CustomField, Object> map = new HashMap<>();
         for (int i = 0; i < listOldValue.size(); i++) {
             if (!(listOldValue.get(i).equals(listNewValue.get(i).toString()))) {
+
                 map.put(listCustomFields.get(i), listNewValue.get(i));
+
             }
         }
 

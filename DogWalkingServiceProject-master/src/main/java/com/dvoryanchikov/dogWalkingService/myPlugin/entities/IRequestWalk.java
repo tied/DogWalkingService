@@ -16,9 +16,9 @@ public interface IRequestWalk extends Entity {
 
     void setPetId(String petId);
 
-    int getWalkDuration();
+    Double getWalkDuration();
 
-    void setWalkDuration(int walkDuration);
+    void setWalkDuration(Double walkDuration);
 
     RequestWalkStatus getRequestWalkStatus();
 

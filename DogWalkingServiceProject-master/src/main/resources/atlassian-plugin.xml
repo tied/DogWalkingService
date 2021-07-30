@@ -58,6 +58,7 @@
         <entity>com.dvoryanchikov.dogWalkingService.myPlugin.entities.IDog</entity>
         <entity>com.dvoryanchikov.dogWalkingService.myPlugin.entities.IRequestWalk</entity>
         <entity>com.dvoryanchikov.dogWalkingService.myPlugin.entities.IHistory</entity>
+        <entity>com.dvoryanchikov.dogWalkingService.myPlugin.entities.ILog</entity>
     </ao>
 
     <rest key="rest" path="/dogWalkingRest" version="1.0"/>
@@ -73,6 +74,11 @@
     <component key="dogWalker-manager" class="com.dvoryanchikov.dogWalkingService.myPlugin.managers.DogWalkerManager" />
     <component key="requestWalk-manager" class="com.dvoryanchikov.dogWalkingService.myPlugin.managers.RequestWalkManager" />
     <component key="history-manager" class="com.dvoryanchikov.dogWalkingService.myPlugin.managers.HistoryManager" />
+    <component key="log-manager" class="com.dvoryanchikov.dogWalkingService.myPlugin.managers.LogManager" />
+
+    <component key="custom-fields-components-listener" class="com.dvoryanchikov.dogWalkingService.myPlugin.listener.Listener"/>
+
     <component-import key="templateRenderer" interface="com.atlassian.templaterenderer.TemplateRenderer"/>
+
 
 </atlassian-plugin>

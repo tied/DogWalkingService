@@ -1,7 +1,11 @@
 package com.dvoryanchikov.dogWalkingService.myPlugin.managers;
 
 import com.atlassian.activeobjects.external.ActiveObjects;
+import com.dvoryanchikov.dogWalkingService.myPlugin.entities.IClient;
+import com.dvoryanchikov.dogWalkingService.myPlugin.entities.IDog;
 import com.dvoryanchikov.dogWalkingService.myPlugin.entities.IRequestWalk;
+import com.dvoryanchikov.dogWalkingService.myPlugin.models.Client;
+import com.dvoryanchikov.dogWalkingService.myPlugin.models.Dog;
 import com.dvoryanchikov.dogWalkingService.myPlugin.models.RequestWalk;
 import net.java.ao.Query;
 
@@ -24,7 +28,7 @@ public class RequestWalkManager {
         return false;
     }
 
-    public boolean deleteByUniqueId(String uniqueId) {
+    public void deleteByUniqueId(String uniqueId) throws Exception{
         try {
             Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
             IRequestWalk[] entities = ao.find(IRequestWalk.class, query);
@@ -33,9 +37,8 @@ public class RequestWalkManager {
             }
 
         } catch (Exception ex) {
-            String exs = ex.getMessage();
+            throw new Exception(ex.getMessage());
         }
-        return false;
     }
 
     public RequestWalk[] getAll(){
@@ -70,6 +73,25 @@ public class RequestWalkManager {
         return null;
     }
 
+
+
+    public RequestWalk getByIssueId (String issueId) {
+
+        try {
+            Query query = Query.select().where("ISSUE_ID = '" + issueId + "'");
+            IRequestWalk[] entities = ao.find(IRequestWalk.class, query);
+            if (entities != null && entities.length > 0) {
+                return RequestWalk.fromEntity(entities[0]);
+            }
+        } catch (Exception ex) {
+            String exs = ex.getMessage();
+        }
+        return null;
+
+    }
+
+
+
     public IRequestWalk getEntityByUniqueId(String uniqueId) {
         try {
             Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
@@ -81,6 +103,26 @@ public class RequestWalkManager {
             String exs = ex.getMessage();
         }
         return null;
+    }
+
+    public void fullUpdate (RequestWalk model) {
+
+        try {
+            if (model != null) {
+                IRequestWalk entity = getEntityByUniqueId(model.getUniqueId());
+                RequestWalk requestWalk = getByUniqueId(model.getUniqueId());
+                model.setIssueId(requestWalk.getIssueId());
+
+                if (entity != null) {
+                    model.toEntity(entity);
+                    entity.save();
+//                    return true;
+                }
+            }
+        } catch (Exception ex) {
+            String exs = ex.getMessage();
+        }
+
     }
 
     public boolean update(RequestWalk model) {

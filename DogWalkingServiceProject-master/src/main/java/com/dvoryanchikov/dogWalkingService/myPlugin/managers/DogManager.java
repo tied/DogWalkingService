@@ -1,12 +1,14 @@
 package com.dvoryanchikov.dogWalkingService.myPlugin.managers;
 
 import com.atlassian.activeobjects.external.ActiveObjects;
+import com.dvoryanchikov.dogWalkingService.myPlugin.entities.IClient;
 import com.dvoryanchikov.dogWalkingService.myPlugin.entities.IDog;
+import com.dvoryanchikov.dogWalkingService.myPlugin.models.Client;
 import com.dvoryanchikov.dogWalkingService.myPlugin.models.Dog;
 import net.java.ao.Query;
 
 public class DogManager {
-    private ActiveObjects ao;
+    private final ActiveObjects ao;
 
     private DogManager(ActiveObjects ao) {
         this.ao = ao;
@@ -28,8 +30,16 @@ public class DogManager {
         }
         return false;
     }
+    
+    public void deleteAllByOwnerId (String ownerId) throws Exception{
 
-    public boolean deleteByUniqueId(String uniqueId) {
+        for (Dog dogs : getByOwnerId(ownerId)) {
+            deleteByUniqueId(dogs.getUniqueId());
+        }
+
+    } 
+
+    public void deleteByUniqueId(String uniqueId) throws Exception{
         try {
             Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
             IDog[] entities = ao.find(IDog.class, query);
@@ -39,9 +49,9 @@ public class DogManager {
             }
 
         } catch (Exception ex) {
-            String exs = ex.getMessage();
+            throw new Exception(ex.getMessage());
         }
-        return false;
+
     }
 
     public Dog[] getByOwnerId(String ownerId){
@@ -76,6 +86,23 @@ public class DogManager {
         }
         return null;
     }
+
+
+    public Dog getByIssueId (String issueId) {
+
+        try {
+            Query query = Query.select().where("ISSUE_ID = '" + issueId + "'");
+            IDog[] entities = ao.find(IDog.class, query);
+            if (entities != null && entities.length > 0) {
+                return Dog.fromEntity(entities[0]);
+            }
+        } catch (Exception ex) {
+            String exs = ex.getMessage();
+        }
+        return null;
+
+    }
+
 
     public Dog[] getAll() {
         try {

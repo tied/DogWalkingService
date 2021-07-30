@@ -133,7 +133,7 @@ public class RequestWalkIssueService {
             issueInputParameters.setSummary("Owner: " + findFullName(requestWalk.getClientId())
                     + " Pet: " + findDogNameAndBreed(requestWalk.getPetId()));
 
-            String walkDuration = Integer.toString(requestWalk.getWalkDuration());
+            String walkDuration = Double.toString(requestWalk.getWalkDuration());
 
             try {
                 issueInputParameters.addCustomFieldValue("customfield_10116",

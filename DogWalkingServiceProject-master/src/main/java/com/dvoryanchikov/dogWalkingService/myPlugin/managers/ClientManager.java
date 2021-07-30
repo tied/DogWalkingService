@@ -21,13 +21,13 @@ public class ClientManager {
         return new ClientManager(ao);
     }
 
-    public Boolean save(Client model) throws Exception{
+    public void save(Client model) throws Exception{
         try {
             IClient entity = ao.create(IClient.class);
             model.toEntity(entity);
             entity.save();
 
-            return true;
+//            return true;
 
         } catch (Exception ex) {
             throw new Exception(ex.getMessage());
@@ -36,24 +36,20 @@ public class ClientManager {
 //        return false;
     }
 
-    public boolean deleteByUniqueId(String uniqueId) {
+    public void deleteByUniqueId(String uniqueId) throws Exception{
         try {
             Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
             IClient[] entities = ao.find(IClient.class, query);
             if (entities != null && entities.length > 0) {
                 ao.delete(entities[0]);
             }
-            return true;
 
         } catch (Exception ex) {
-//            StringBuilder exs = new StringBuilder("ERROR: ");
-//
-//            for (int i = 0; i < ex.getStackTrace().length; i++) {
-//                exs.append(" ").append(ex.getStackTrace()[i]);
-//            }
+
             String exs = ex.getMessage();
+            throw new Exception(ex.getMessage());
         }
-        return false;
+
     }
 
     public Client getByUniqueId(String uniqueId) {
@@ -68,6 +64,24 @@ public class ClientManager {
         }
         return null;
     }
+
+
+    public Client getByIssueId (String issueId) {
+
+        try {
+            Query query = Query.select().where("ISSUE_ID = '" + issueId + "'");
+            IClient[] entities = ao.find(IClient.class, query);
+            if (entities != null && entities.length > 0) {
+                return Client.fromEntity(entities[0]);
+            }
+        } catch (Exception ex) {
+            String exs = ex.getMessage();
+        }
+        return null;
+
+    }
+
+
 
     public Client[] getAll() {
         try {

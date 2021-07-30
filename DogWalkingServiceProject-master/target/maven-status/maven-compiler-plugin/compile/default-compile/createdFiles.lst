@@ -1,8 +1,10 @@
 com\dvoryanchikov\dogWalkingService\myPlugin\entities\IClient.class
+com\dvoryanchikov\dogWalkingService\myPlugin\models\Log.class
 com\dvoryanchikov\dogWalkingService\myPlugin\managers\DogManager.class
 com\dvoryanchikov\dogWalkingService\myPlugin\services\jira\IssueConstants.class
 com\dvoryanchikov\dogWalkingService\myPlugin\controller\impl\ClientImpl.class
 com\dvoryanchikov\dogWalkingService\myPlugin\models\enums\DogStatus.class
+com\dvoryanchikov\dogWalkingService\myPlugin\listener\Listener.class
 com\dvoryanchikov\dogWalkingService\myPlugin\controller\impl\DogImpl.class
 com\dvoryanchikov\dogWalkingService\myPlugin\managers\RequestWalkManager.class
 com\dvoryanchikov\dogWalkingService\myPlugin\models\History.class
@@ -15,6 +17,7 @@ com\dvoryanchikov\dogWalkingService\myPlugin\entities\IHistory.class
 com\dvoryanchikov\dogWalkingService\myPlugin\controller\impl\HistoryImpl.class
 com\dvoryanchikov\dogWalkingService\myPlugin\services\HistoryService.class
 com\dvoryanchikov\dogWalkingService\myPlugin\models\Dog.class
+com\dvoryanchikov\dogWalkingService\myPlugin\managers\LogManager.class
 com\dvoryanchikov\dogWalkingService\myPlugin\models\enums\RequestWalkStatus.class
 com\dvoryanchikov\dogWalkingService\myPlugin\services\ClientService.class
 com\dvoryanchikov\dogWalkingService\myPlugin\managers\DogWalkerManager.class
@@ -29,11 +32,14 @@ com\dvoryanchikov\dogWalkingService\myPlugin\entities\IDog.class
 com\dvoryanchikov\dogWalkingService\myPlugin\models\Client.class
 com\dvoryanchikov\dogWalkingService\myPlugin\services\jira\DogIssueService.class
 com\dvoryanchikov\dogWalkingService\myPlugin\models\common\StatusResponse.class
+com\dvoryanchikov\dogWalkingService\myPlugin\constants\CustomFieldConstants.class
 com\dvoryanchikov\dogWalkingService\myPlugin\services\DogWalkerService.class
 com\dvoryanchikov\dogWalkingService\myPlugin\managers\ClientManager.class
+com\dvoryanchikov\dogWalkingService\myPlugin\entities\ILog.class
 com\dvoryanchikov\dogWalkingService\myPlugin\models\DogWalker.class
 com\dvoryanchikov\dogWalkingService\myPlugin\entities\IDogWalker.class
 com\dvoryanchikov\dogWalkingService\myPlugin\services\DogService.class
 com\dvoryanchikov\dogWalkingService\myPlugin\models\RequestWalk.class
 com\dvoryanchikov\dogWalkingService\myPlugin\entities\IRequestWalk.class
 com\dvoryanchikov\dogWalkingService\myPlugin\managers\HistoryManager.class
+com\dvoryanchikov\dogWalkingService\myPlugin\utils\CustomFieldUtils.class

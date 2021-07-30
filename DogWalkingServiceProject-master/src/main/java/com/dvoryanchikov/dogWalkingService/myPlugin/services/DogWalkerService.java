@@ -2,16 +2,21 @@ package com.dvoryanchikov.dogWalkingService.myPlugin.services;
 
 import com.atlassian.activeobjects.external.ActiveObjects;
 import com.atlassian.jira.component.ComponentAccessor;
+import com.atlassian.jira.issue.CustomFieldManager;
+import com.atlassian.jira.issue.Issue;
 import com.atlassian.jira.issue.MutableIssue;
 import com.atlassian.jira.issue.customfields.option.Option;
 import com.atlassian.jira.issue.customfields.option.Options;
 import com.atlassian.jira.issue.fields.CustomField;
 import com.atlassian.jira.issue.fields.config.FieldConfig;
 import com.dvoryanchikov.dogWalkingService.myPlugin.managers.DogWalkerManager;
+import com.dvoryanchikov.dogWalkingService.myPlugin.models.Dog;
 import com.dvoryanchikov.dogWalkingService.myPlugin.models.DogWalker;
+import com.dvoryanchikov.dogWalkingService.myPlugin.models.enums.DogWalkerStatus;
 import com.dvoryanchikov.dogWalkingService.myPlugin.services.jira.DogWalkerIssueService;
 import org.checkerframework.checker.units.qual.A;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -45,13 +50,67 @@ public class DogWalkerService {
         return dogWalkerManager.save(model);
     }
 
-    public boolean deleteDogWalkerByUniqueId(String uniqueId) {
-        return dogWalkerIssueService.deleteIssue(uniqueId) && dogWalkerManager.deleteByUniqueId(uniqueId);
+    public void deleteDogWalkerFromListener (Issue issue) throws Exception{
+        // получили из базы модель клиента, которая соответствует удаляемому issue с jira
+        DogWalker dogWalkerByIssueId = dogWalkerManager.getByIssueId(issue.getId().toString());
+
+        dogWalkerManager.deleteByUniqueId(dogWalkerByIssueId.getUniqueId());
+
+    }
+
+    public void deleteDogWalkerByUniqueId(String uniqueId) throws Exception{
+        dogWalkerIssueService.deleteIssue(uniqueId);
+        dogWalkerManager.deleteByUniqueId(uniqueId);
     }
 
     public boolean updateDogWalker(DogWalker model) {
         dogWalkerManager.update(model);
         return dogWalkerIssueService.changeIssueStatus(model);
+    }
+
+
+
+    public void UpdateDogWalkerFromListener (Issue issue) throws Exception {
+
+        // получили из базы модель клиента, которая соответствует обновляемому issue с jira
+        DogWalker DogWalkerByIssueId = dogWalkerManager.getByIssueId(issue.getId().toString());
+
+        // используя issue, которая пришла от Jira собрали модельку клиента
+        DogWalker model = new DogWalker();
+
+        CustomFieldManager customFieldManager = ComponentAccessor.getCustomFieldManager();
+
+        Object Name = issue.getCustomFieldValue(customFieldManager.getCustomFieldObject(10108L));
+        Object LastName = issue.getCustomFieldValue(customFieldManager.getCustomFieldObject(10109L));
+        Object MiddleName = issue.getCustomFieldValue(customFieldManager.getCustomFieldObject(10110L));
+        Object BirthDate = issue.getCustomFieldValue(customFieldManager.getCustomFieldObject(10111L));
+        Object PhoneNumber = issue.getCustomFieldValue(customFieldManager.getCustomFieldObject(10112L));
+        Object Email = issue.getCustomFieldValue(customFieldManager.getCustomFieldObject(10113L));
+        Object DogWalkerStatusNew = issue.getCustomFieldValue(customFieldManager.getCustomFieldObject(10115L));
+
+        model.setName((String) Name);
+        model.setLastName((String) LastName);
+        model.setMiddleName((String) MiddleName);
+        model.setBirthDate((Timestamp) BirthDate);
+        model.setPhoneNumber((Double) PhoneNumber);
+        model.setEmail((String) Email);
+
+        if (DogWalkerStatusNew.toString().equals("FREE")) {
+            model.setDogWalkerStatus(DogWalkerStatus.FREE);
+        } else if (DogWalkerStatusNew.toString().equals("BUSY")) {
+            model.setDogWalkerStatus(DogWalkerStatus.BUSY);
+        }
+
+//        model.setDogWalkerStatus((com.dvoryanchikov.dogWalkingService.myPlugin.models.enums.DogWalkerStatus) DogWalkerStatus);
+
+
+        // с помощью модельки клиента из базы дополнили новую модель айдишниками
+        model.setUniqueId(DogWalkerByIssueId.getUniqueId());
+        model.setIssueId(DogWalkerByIssueId.getIssueId());
+
+        // обновили модель в базе новой моделькой, собранной из пришедшей issue
+        dogWalkerManager.allUpdate(model);
+
     }
 
     public void allUpdateDogWalker(DogWalker model) throws Exception{

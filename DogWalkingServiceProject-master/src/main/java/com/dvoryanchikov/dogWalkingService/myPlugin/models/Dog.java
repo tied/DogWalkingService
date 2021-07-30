@@ -50,7 +50,8 @@ public class Dog extends UniqID{
         return gender;
     }
 
-    public void setGender(Gender gender) {
+    public void setGender(Gender gender/*String description*/) {
+//        this.gender.setDescription(description);
         this.gender = gender;
     }
 

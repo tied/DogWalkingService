@@ -291,7 +291,7 @@ var additionalDogFunctions = function () {
 
     var saveButton = function (row) {
         let saveButton = document.createElement("input");
-        buttonEdit.classList.add("button");
+        saveButton.classList.add("button");
         saveButton.type = "button";
         saveButton.value = "Save";
 

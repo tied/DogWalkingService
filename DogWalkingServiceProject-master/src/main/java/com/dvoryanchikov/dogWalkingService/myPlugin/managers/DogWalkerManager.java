@@ -1,7 +1,9 @@
 package com.dvoryanchikov.dogWalkingService.myPlugin.managers;
 
 import com.atlassian.activeobjects.external.ActiveObjects;
+import com.dvoryanchikov.dogWalkingService.myPlugin.entities.IDog;
 import com.dvoryanchikov.dogWalkingService.myPlugin.entities.IDogWalker;
+import com.dvoryanchikov.dogWalkingService.myPlugin.models.Dog;
 import com.dvoryanchikov.dogWalkingService.myPlugin.models.DogWalker;
 import net.java.ao.Query;
 
@@ -28,7 +30,7 @@ public class DogWalkerManager {
         return false;
     }
 
-    public boolean deleteByUniqueId(String uniqueId) {
+    public void deleteByUniqueId(String uniqueId) throws Exception{
         try {
             Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
             IDogWalker[] entities = ao.find(IDogWalker.class, query);
@@ -37,9 +39,9 @@ public class DogWalkerManager {
             }
 
         } catch (Exception ex) {
-            String exs = ex.getMessage();
+            throw new Exception(ex.getMessage());
         }
-        return false;
+
     }
 
     public DogWalker getByUniqueId(String uniqueId) {
@@ -56,6 +58,24 @@ public class DogWalkerManager {
         }
         return null;
     }
+
+
+    public DogWalker getByIssueId (String issueId) {
+
+        try {
+            Query query = Query.select().where("ISSUE_ID = '" + issueId + "'");
+            IDogWalker[] entities = ao.find(IDogWalker.class, query);
+            if (entities != null && entities.length > 0) {
+                return DogWalker.fromEntity(entities[0]);
+            }
+        } catch (Exception ex) {
+            String exs = ex.getMessage();
+        }
+        return null;
+
+    }
+
+
 
     public DogWalker[] getAll(){
         try{

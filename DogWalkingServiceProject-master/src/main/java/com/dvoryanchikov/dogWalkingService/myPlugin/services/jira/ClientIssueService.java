@@ -170,7 +170,7 @@ public class ClientIssueService {
 //        }
     }
 
-    public boolean deleteIssue(String clientId) {
+    public void deleteIssue(String clientId) throws Exception{
         try {
             IssueService.DeleteValidationResult deleteValidationResult = ComponentAccessor
                     .getIssueService().validateDelete(
@@ -182,12 +182,12 @@ public class ClientIssueService {
                         ComponentAccessor.getJiraAuthenticationContext().getLoggedInUser(),
                         deleteValidationResult);
             }
-            return true;
+
 
         } catch (Exception ex) {
-            String exs = ex.getMessage();
+            throw new Exception(ex.getMessage());
         }
-        return false;
+
     }
 
     public Issue create(Client client) throws Exception{

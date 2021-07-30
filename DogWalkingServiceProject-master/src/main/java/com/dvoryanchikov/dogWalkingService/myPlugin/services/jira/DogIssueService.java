@@ -99,23 +99,34 @@ public class DogIssueService {
 //        return false;
     }
 
-    public boolean deleteIssue(String dogId) {
+    public void deleteAllByOwnerId (String ownerId) throws Exception{
+
+        for (Dog dogs : dogManager.getByOwnerId(ownerId)) {
+            try {
+                deleteIssue(dogs.getUniqueId());
+            } catch (Exception ex) {
+                throw new Exception(ex.getMessage());
+            }
+
+        }
+
+    }
+
+    public void deleteIssue(String uniqueId) throws Exception{
         try {
             IssueService.DeleteValidationResult deleteValidationResult = ComponentAccessor
                     .getIssueService().validateDelete(
                             ComponentAccessor.getJiraAuthenticationContext().getLoggedInUser(),
-                            Long.parseLong(findIssueId(dogId)));
+                            Long.parseLong(findIssueId(uniqueId)));
 
             if(deleteValidationResult.isValid()) {
                 ComponentAccessor.getIssueService().delete(ComponentAccessor
                         .getJiraAuthenticationContext().getLoggedInUser(), deleteValidationResult);
-                return true;
             }
 
         }catch (Exception ex){
-            String exs = ex.getMessage();
+            throw new Exception(ex.getMessage());
         }
-        return false;
     }
 
     public boolean updateChangeStatusIssue(Dog dog) {

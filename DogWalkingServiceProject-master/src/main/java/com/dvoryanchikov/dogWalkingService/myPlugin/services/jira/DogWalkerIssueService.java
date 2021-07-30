@@ -99,7 +99,7 @@ public class DogWalkerIssueService {
 //        return false;
     }
 
-    public boolean deleteIssue(String dogWalkerId) {
+    public void deleteIssue(String dogWalkerId) throws Exception{
         try {
             IssueService.DeleteValidationResult deleteValidationResult = ComponentAccessor
                     .getIssueService().validateDelete(
@@ -110,13 +110,11 @@ public class DogWalkerIssueService {
                 ComponentAccessor.getIssueService().delete(ComponentAccessor
                         .getJiraAuthenticationContext().getLoggedInUser(),
                         deleteValidationResult);
-                return true;
             }
 
         }catch (Exception ex){
-            String exs = ex.getMessage();
+            throw new Exception(ex.getMessage());
         }
-        return false;
     }
 
     public Boolean changeIssueStatus(DogWalker dogWalker) {

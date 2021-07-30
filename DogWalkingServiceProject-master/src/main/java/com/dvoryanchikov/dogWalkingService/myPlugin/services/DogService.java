@@ -2,6 +2,7 @@ package com.dvoryanchikov.dogWalkingService.myPlugin.services;
 
 import com.atlassian.activeobjects.external.ActiveObjects;
 import com.atlassian.jira.component.ComponentAccessor;
+import com.atlassian.jira.issue.CustomFieldManager;
 import com.atlassian.jira.issue.Issue;
 import com.atlassian.jira.issue.MutableIssue;
 import com.atlassian.jira.issue.customfields.option.Option;
@@ -10,9 +11,12 @@ import com.atlassian.jira.issue.fields.CustomField;
 import com.atlassian.jira.issue.fields.config.FieldConfig;
 import com.atlassian.renderer.v2.MutableRenderer;
 import com.dvoryanchikov.dogWalkingService.myPlugin.managers.DogManager;
+import com.dvoryanchikov.dogWalkingService.myPlugin.models.Client;
 import com.dvoryanchikov.dogWalkingService.myPlugin.models.Dog;
+import com.dvoryanchikov.dogWalkingService.myPlugin.models.enums.Gender;
 import com.dvoryanchikov.dogWalkingService.myPlugin.services.jira.DogIssueService;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -50,9 +54,29 @@ public class DogService {
         return dogManager.save(model);
     }
 
-    public boolean deleteDogByUniqueId(String uniqueId) {
+    public void deleteAllPetsByOwnerId (String ownerId) throws Exception{
+
+        try {
+            dogIssueService.deleteAllByOwnerId(ownerId);
+        } catch (Exception ex) {
+            throw new Exception(ex.getMessage());
+        }
+
+//        dogManager.deleteAllByOwnerId(ownerId);
+
+    }
+
+    public void deleteDogFromListener (Issue issue) throws Exception{
+        // получили из базы модель клиента, которая соответствует удаляемому issue с jira
+        Dog dogByIssueId = dogManager.getByIssueId(issue.getId().toString());
+
+        dogManager.deleteByUniqueId(dogByIssueId.getUniqueId());
+
+    }
+
+    public void deleteDogByUniqueId(String uniqueId) throws Exception{
         dogIssueService.deleteIssue(uniqueId);
-        return dogManager.deleteByUniqueId(uniqueId);
+        dogManager.deleteByUniqueId(uniqueId);
     }
 
     // обновления статуса!
@@ -66,6 +90,55 @@ public class DogService {
 //        Options options = ComponentAccessor.getOptionsManager().getOptions(relevantConfig);
 //        options.getOptionById()
 //    }
+
+
+    public void UpdateDogFromListener (Issue issue) throws Exception {
+
+        // получили из базы модель клиента, которая соответствует обновляемому issue с jira
+        Dog DogByIssueId = dogManager.getByIssueId(issue.getId().toString());
+
+        // используя issue, которая пришла от Jira собрали модельку клиента
+        Dog model = new Dog();
+
+        CustomFieldManager customFieldManager = ComponentAccessor.getCustomFieldManager();
+
+        Object DogName = issue.getCustomFieldValue(customFieldManager.getCustomFieldObject(10101L));
+        Object GenderNew = issue.getCustomFieldValue(customFieldManager.getCustomFieldObject(10100L));
+        Object DogBirthDate = issue.getCustomFieldValue(customFieldManager.getCustomFieldObject(10102L));
+        Object Breed = issue.getCustomFieldValue(customFieldManager.getCustomFieldObject(10103L));
+        Object Color = issue.getCustomFieldValue(customFieldManager.getCustomFieldObject(10104L));
+        Object DogCharacter = issue.getCustomFieldValue(customFieldManager.getCustomFieldObject(10105L));
+        Object OwnerName = issue.getCustomFieldValue(customFieldManager.getCustomFieldObject(10121L));
+
+        model.setDogName((String) DogName);
+
+        if (GenderNew.toString().equals("boy")) {
+            model.setGender(Gender.boy);
+        } else if (GenderNew.toString().equals("girl")) {
+            model.setGender(Gender.girl);
+        }
+
+        model.setDogBirthDate((Timestamp) DogBirthDate);
+        model.setBreed((String) Breed);
+        model.setColor((String) Color);
+        model.setDogCharacter((String) DogCharacter);
+
+        model.setOwnerId(DogByIssueId.getOwnerId());
+
+//        model.setOwnerId((String) OwnerName);
+
+        // с помощью модельки клиента из базы дополнили новую модель айдишниками
+        model.setUniqueId(DogByIssueId.getUniqueId());
+        model.setIssueId(DogByIssueId.getIssueId());
+
+        // обновили модель в базе новой моделькой, собранной из пришедшей issue
+        try {
+            dogManager.fullUpdate(model);
+        } catch (Exception ex) {
+            throw new Exception(ex.getMessage());
+        }
+    }
+
 
     public void fullUpdateDog(Dog model) throws Exception{
 
@@ -117,6 +190,8 @@ public class DogService {
         FieldConfig relevantConfig = Gender.getRelevantConfig(issue);
         Options options = ComponentAccessor.getOptionsManager().getOptions(relevantConfig);
         Option optionGenderById = options.getOptionById(Long.parseLong(model.getGender().getDescription()));
+
+
 
         listNewValue.add(optionGenderById);
         listNewValue.add(model.getDogBirthDate());
