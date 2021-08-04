@@ -1,9 +1,3 @@
-// formFindReq()
-// addFromBdReqHistory()
-// clearAllHistory()
-// loadInfFromOwners()
-// requestHistory()
-
 var scriptInfRequestHistory = function () {
 
     var that = {
@@ -27,16 +21,16 @@ var scriptInfRequestHistory = function () {
             "          <input class=\"button\" type=\"button\" onclick=\"scriptInfRequestHistory().addFromBdReqHistory()\" value=\"get all requests for History\">\n" +
             "          <input class=\"button\" type=\"button\" onclick=\"scriptInfRequestHistory().clearAllHistory()\" value=\"hide all requests\">\n" +
             "\n" +
-            "          <select class=\"inputString\" id=\"selectHistoryOwners\" onchange=\"scriptInfRequestHistory().loadInfFromOwners()\">\n" +
-            "            <option value=\"default\"> default </option>\n" +
+            "          <select class=\"inputHistory\" id=\"selectHistoryOwners\" onchange=\"scriptInfRequestHistory().loadInfFromOwners()\">\n" +
+            "            <option value=\"default\"> select owner </option>\n" +
             "          </select>\n" +
             "\n" +
-            "          <select class=\"inputString\" id=\"selectHistoryDogs\" >\n" +
-            "            <option value=\"default\"> default </option>\n" +
+            "          <select class=\"inputHistory\" id=\"selectHistoryDogs\" >\n" +
+            "            <option value=\"default\"> select pet </option>\n" +
             "          </select>\n" +
             "\n" +
-            "          <select class=\"inputString\" id=\"selectHistoryWalkers\" >\n" +
-            "            <option value=\"default\"> default </option>\n" +
+            "          <select class=\"inputHistory\" id=\"selectHistoryWalkers\" >\n" +
+            "            <option value=\"default\"> select dog walker </option>\n" +
             "          </select>\n" +
             "\n" +
             "          <input class=\"button\" type=\"button\" value=\"find\" id=\"sendButtonHistory\" onclick=\"scriptInfRequestHistory().requestHistory()\">\n";
@@ -47,6 +41,11 @@ var scriptInfRequestHistory = function () {
 
     }
 
+    that.createMenu = function () {
+
+        that.scripts.createMenu();
+
+    }
 
     that.tableSearch = function () {
         var phrase = document.getElementById('uniqueIdReq');

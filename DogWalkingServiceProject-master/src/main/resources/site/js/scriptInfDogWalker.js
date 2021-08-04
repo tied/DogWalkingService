@@ -15,22 +15,38 @@ var scriptInfDogWalker = function () {
         var col3 = document.getElementById("col3");
 
         var form = document.getElementById("myFormReq");
-        form.onsubmit = that.formFindDogWalker;
+        form.onsubmit = function (e) {that.formFindDogWalker(e)};
 
         col1.innerHTML = "Enter unique id dog walker";
         col2.innerHTML = "<input class=\"inputText\" placeholder=\"Enter unique id dog walker\" type=text id=\"uniqueIdDW\">";
         col3.innerHTML =
-            "<input class=\"button\" type=submit name=\"submit\" value=\"find\" id=\"newDW\">\n" +
+            "<input class=\"button\" type=\"button\" onclick=\"scriptInfDogWalker().formFindDogWalkerFromBtn()\" name=\"submit\" value=\"find\" id=\"newDW\">\n" +
             "<input class=\"button\" type=\"button\" onclick=\"scriptInfDogWalker().addFromBdDW()\" value=\"get all dog walkers\">\n" +
             "<input class=\"button\" type=\"button\" onclick=\"scriptInfDogWalker().clearDogWalker()\" value=\"hide found dog walker\">\n" +
             "<input class=\"button\" type=\"button\" onclick=\"scriptInfDogWalker().clearAllDogWalkers()\" value=\"hide all dog walkers\">"
 
     }
 
-    that.formFindDogWalker = function () {
+    that.createMenu = function () {
+
+        that.scripts.createMenu();
+
+    }
+
+    that.formFindDogWalker = function (e) {
+
+        e.preventDefault();
+
         let str = document.getElementById("uniqueIdDW").value;
 
         that.api.dogWalkerByUniqueId(str, that.additional.sendSuccessFindDogWalker);
+
+    }
+
+    that.formFindDogWalkerFromBtn = function () {
+
+        var ev = new Event("submit");
+        document.getElementById("myFormReq").dispatchEvent(ev);
 
     }
 

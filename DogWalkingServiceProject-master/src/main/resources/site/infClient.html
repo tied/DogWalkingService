@@ -7,21 +7,12 @@
     </title>
 
     <script defer src="/plugins/servlet/servlet-inf/site/js/scriptInfClient.js" type="text/javascript"></script>
-    <link href="/plugins/servlet/servlet-inf/site/css/styleClient.css" rel="stylesheet"/>
+    <link href="/plugins/servlet/servlet-inf/site/css/myStyle.css" rel="stylesheet"/>
 
 </head>
 <body>
 
-<div class="dropdown">
-    <button class="dropbtn">Dropdown</button>
-    <div class="dropdown-content">
-        <a href="/plugins/servlet/servlet-inf/site/mainPage.html">main page</a>
-        <a href="/plugins/servlet/servlet-inf/site/infDog.html">pets</a>
-        <a href="/plugins/servlet/servlet-inf/site/infDogWalker.html">dogwalkers</a>
-        <a href="/plugins/servlet/servlet-inf/site/infRequestWalk.html">requests</a>
-        <a href="/plugins/servlet/servlet-inf/site/infRequestHistory.html">history</a>
-    </div>
-</div>
+<div id="menu"></div>
 
 <div id="newClt"></div>
 
@@ -35,11 +26,12 @@
 
     <script>
         scriptInfClient().createForm();
+        scriptInfClient().createMenu();
     </script>
 
     <br>
 
-    <div class="main" id="findTable"></div>
+    <div id="findTable"></div>
 
     <br>
 
@@ -96,7 +88,7 @@
                     Phone number:
                 </td>
                 <td>
-                    <input type="text" onclick="scriptInfClient().inputValuePhone()" class="inputString"
+                    <input type="number" onclick="scriptInfClient().inputValuePhone()" class="inputString"
                            id="phoneNumber">
                     <div id="inputPhone"></div>
                 </td>
@@ -145,7 +137,7 @@
 
 </div>
 
-<div id="autor">&copy; Sorokin Evgeniy</div>
+<div id="author">&copy; Sorokin Evgeniy</div>
 
 </body>
 </html>

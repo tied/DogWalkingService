@@ -7,12 +7,18 @@ var additionalDogWalkerFunctions = function () {
         parent.innerHTML = "";
 
         let table = document.createElement("table");
+        table.classList.add("tableMain");
         let row = document.createElement("tr");
-
-        createTitleTableDW(row);
+        row.classList.add("rowTh");
         table.append(row);
 
-        addDataFindDW(data, table);
+        createTitleTableDW(row);
+
+        let tbody = document.createElement("tbody");
+
+        addDataFindDW(data, tbody);
+
+        table.append(tbody);
 
         parent.append(table);
     }
@@ -22,7 +28,7 @@ var additionalDogWalkerFunctions = function () {
         parent.innerHTML = "";
 
         let table = document.createElement("table");
-        table.id = "tableMain";
+        table.classList.add("tableMain");
         let row = document.createElement("tr");
         row.classList.add("rowTh");
 
@@ -159,6 +165,7 @@ var additionalDogWalkerFunctions = function () {
 
     function addDataFindDW(array, table) {
         let addRow = document.createElement('tr');
+        addRow.classList.add("row");
         table.append(addRow);
 
         for (let j = 0; j < 8; j++) {

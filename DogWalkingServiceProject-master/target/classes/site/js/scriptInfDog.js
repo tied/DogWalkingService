@@ -1,17 +1,3 @@
-// formFindDog()
-// addFromBdD()
-// clearDog()
-// clearAllDog()
-//
-// inputValueDogName()
-// inputValueGender()
-// inputValueDogBirthday()
-// inputValueBreed()
-// inputValueColor()
-// inputValueCharacter()
-//
-// crtD()
-
 var scriptInfDog = function () {
 
     var that = {
@@ -30,21 +16,37 @@ var scriptInfDog = function () {
         var col3 = document.getElementById("col3");
 
         var form = document.getElementById("myFormReq");
-        form.onsubmit = that.formFindDog;
+        form.onsubmit = function (e) {that.formFindDog(e)};
 
         col1.innerHTML = "Enter unique id dog";
         col2.innerHTML = "<input class=\"inputText\" placeholder=\"Enter unique id dog\" type=text id=\"uniqueIdD\">";
         col3.innerHTML =
-            "<input class=\"button\" type=submit name=\"submit\" value=\"find\" id=\"newD\">\n" +
+            "<input class=\"button\" type=\"button\" onclick=\"scriptInfDog().formFindDogFromBtn()\" name=\"submit\" value=\"find\" id=\"newD\">\n" +
             "<input class=\"button\" type=\"button\" onclick=\"scriptInfDog().addFromBdD()\" value=\"get all dogs\">\n" +
             "<input class=\"button\" type=\"button\" onclick=\"scriptInfDog().clearDog()\" value=\"hide found dog\">\n" +
             "<input class=\"button\" type=\"button\" onclick=\"scriptInfDog().clearAllDog()\" value=\"hide all dogs\">"
 
     }
 
-    that.formFindDog = function () {
+    that.createMenu = function () {
+
+        that.scripts.createMenu();
+
+    }
+
+    that.formFindDog = function (e) {
+
+        e.preventDefault();
+
         let str = document.getElementById("uniqueIdD").value;
         that.api.dogByUniqueId(str, that.additional.sendSuccessFindDog)
+    }
+
+    that.formFindDogFromBtn = function () {
+
+        var ev = new Event("submit");
+        document.getElementById("myFormReq").dispatchEvent(ev);
+
     }
 
     that.addFromBdD = function (idEditRow) {

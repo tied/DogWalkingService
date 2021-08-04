@@ -12,13 +12,18 @@ var additionalClientFunctions = function () {
         parent.innerHTML = "";
 
         let table = document.createElement("table");
-
+        table.classList.add("tableMain");
         let row = document.createElement("tr");
+        row.classList.add("rowTh");
         table.append(row);
 
         createTitleTable(row);
 
-        addDataFind(data, table);
+        let tbody = document.createElement("tbody");
+
+        addDataFind(data, tbody);
+
+        table.append(tbody);
 
         parent.append(table);
     }
@@ -27,8 +32,8 @@ var additionalClientFunctions = function () {
         let parent = document.getElementById("clientTable");
         parent.innerHTML = "";
 
-        let table = document.createElement("table");
-        table.id = "tableMain";
+        let table = document.createElement("table");;
+        table.classList.add("tableMain");
         let row = document.createElement("tr");
         row.classList.add("rowTh");
 
@@ -168,6 +173,7 @@ var additionalClientFunctions = function () {
 
     var addDataFind = function(array, table) {
         let addRow = document.createElement('tr');
+        addRow.classList.add("row");
         table.append(addRow);
 
         for (let j = 0; j < 8; j++) {

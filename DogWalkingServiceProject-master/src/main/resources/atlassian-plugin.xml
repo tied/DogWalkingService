@@ -14,13 +14,7 @@
     <web-resource key="myPlugin-resources" name="myPlugin Web Resources">
         <dependency>com.atlassian.auiplugin:ajs</dependency>
 
-        <resource type="download" name="styleClient.css" location="/site/css/styleClient.css"/>
-        <resource type="download" name="styleDog.css" location="/site/css/styleDog.css"/>
-        <resource type="download" name="styleDogWalker.css" location="/site/css/styleDogWalker.css"/>
-        <resource type="download" name="styleMain.css" location="/site/css/styleMain.css"/>
-        <resource type="download" name="styleRequestWalk.css" location="/site/css/styleRequestWalk.css"/>
-        <resource type="download" name="styleRequestHistory.css" location="/site/css/styleRequestHistory.css"/>
-
+        <resource type="download" name="myStyle.css" location="/site/css/myStyle.css"/>
 
         <resource type="download" name="scriptInfClient.js" location="/site/js/scriptInfClient.js"/>
         <resource type="download" name="additionalClientFunctions.js" location="/site/js/additionalClientFunctions.js"/>
@@ -53,30 +47,30 @@
     <component-import key ="ao" name="Active Objects Service" interface="com.atlassian.activeobjects.external.ActiveObjects"/>
 
     <ao key="ao-module">
-        <entity>com.dvoryanchikov.dogWalkingService.myPlugin.entities.IClient</entity>
-        <entity>com.dvoryanchikov.dogWalkingService.myPlugin.entities.IDogWalker</entity>
-        <entity>com.dvoryanchikov.dogWalkingService.myPlugin.entities.IDog</entity>
-        <entity>com.dvoryanchikov.dogWalkingService.myPlugin.entities.IRequestWalk</entity>
-        <entity>com.dvoryanchikov.dogWalkingService.myPlugin.entities.IHistory</entity>
-        <entity>com.dvoryanchikov.dogWalkingService.myPlugin.entities.ILog</entity>
+        <entity>com.sorokin.dogWalkingService.myPlugin.entities.IClient</entity>
+        <entity>com.sorokin.dogWalkingService.myPlugin.entities.IDogWalker</entity>
+        <entity>com.sorokin.dogWalkingService.myPlugin.entities.IDog</entity>
+        <entity>com.sorokin.dogWalkingService.myPlugin.entities.IRequestWalk</entity>
+        <entity>com.sorokin.dogWalkingService.myPlugin.entities.IHistory</entity>
+        <entity>com.sorokin.dogWalkingService.myPlugin.entities.ILog</entity>
     </ao>
 
     <rest key="rest" path="/dogWalkingRest" version="1.0"/>
 
     <servlet name="Servlet for dog walking service"
-             class="com.dvoryanchikov.dogWalkingService.myPlugin.servlet.ServletDogWalking"
+             class="com.sorokin.dogWalkingService.myPlugin.servlet.ServletDogWalking"
              key="servlet-service">
         <url-pattern>/servlet-inf/site/*</url-pattern>
     </servlet>
 
-    <component key="client-manager" class="com.dvoryanchikov.dogWalkingService.myPlugin.managers.ClientManager" />
-    <component key="dog-manager" class="com.dvoryanchikov.dogWalkingService.myPlugin.managers.DogManager" />
-    <component key="dogWalker-manager" class="com.dvoryanchikov.dogWalkingService.myPlugin.managers.DogWalkerManager" />
-    <component key="requestWalk-manager" class="com.dvoryanchikov.dogWalkingService.myPlugin.managers.RequestWalkManager" />
-    <component key="history-manager" class="com.dvoryanchikov.dogWalkingService.myPlugin.managers.HistoryManager" />
-    <component key="log-manager" class="com.dvoryanchikov.dogWalkingService.myPlugin.managers.LogManager" />
+    <component key="client-manager" class="com.sorokin.dogWalkingService.myPlugin.managers.ClientManager" />
+    <component key="dog-manager" class="com.sorokin.dogWalkingService.myPlugin.managers.DogManager" />
+    <component key="dogWalker-manager" class="com.sorokin.dogWalkingService.myPlugin.managers.DogWalkerManager" />
+    <component key="requestWalk-manager" class="com.sorokin.dogWalkingService.myPlugin.managers.RequestWalkManager" />
+    <component key="history-manager" class="com.sorokin.dogWalkingService.myPlugin.managers.HistoryManager" />
+    <component key="log-manager" class="com.sorokin.dogWalkingService.myPlugin.managers.LogManager" />
 
-    <component key="custom-fields-components-listener" class="com.dvoryanchikov.dogWalkingService.myPlugin.listener.Listener"/>
+    <component key="custom-fields-components-listener" class="com.sorokin.dogWalkingService.myPlugin.listener.Listener"/>
 
     <component-import key="templateRenderer" interface="com.atlassian.templaterenderer.TemplateRenderer"/>
 

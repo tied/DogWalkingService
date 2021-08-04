@@ -7,33 +7,66 @@
         DogWalkService
     </title>
 
-    <link href="/plugins/servlet/servlet-inf/site/css/styleClient.css" rel="stylesheet"/>
+    <link href="/plugins/servlet/servlet-inf/site/css/myStyle.css" rel="stylesheet"/>
 </head>
 
 <body>
 
 <div id="contentMainPage">
+
     <h1 class="center">DOG WALKING SERVICE</h1>
 
-    <!--                <img src="images/dogs.jpg" id="imgDogs">-->
-<!--    <img src="/plugins/servlet/servlet-inf/site/images/dogs.jpg" id="imgDogs">-->
+    <div class="list">
 
-<!--    <div class="dropdown">-->
-<!--        <button class="dropbtn">Dropdown</button>-->
-<!--        <div class="dropdown-content">-->
-<!--            -->
-<!--        </div>-->
-<!--    </div>-->
+        <a class="link" href="/plugins/servlet/servlet-inf/site/infClient.html">client</a>
+        <a class="link" href="/plugins/servlet/servlet-inf/site/infDog.html">pets</a>
+        <a class="link" href="/plugins/servlet/servlet-inf/site/infDogWalker.html">dog walkers</a>
+        <a class="link" href="/plugins/servlet/servlet-inf/site/infRequestWalk.html">requests</a>
+        <a class="link" href="/plugins/servlet/servlet-inf/site/infRequestHistory.html">history</a>
 
-    <a class="inputString" href="/plugins/servlet/servlet-inf/site/infClient.html">client</a>
-    <a class="inputString" href="/plugins/servlet/servlet-inf/site/infDog.html">pets</a>
-    <a class="inputString" href="/plugins/servlet/servlet-inf/site/infDogWalker.html">dogwalkers</a>
-    <a class="inputString" href="/plugins/servlet/servlet-inf/site/infRequestWalk.html">requests</a>
-    <a class="inputString" href="/plugins/servlet/servlet-inf/site/infRequestHistory.html">history</a>
+    </div>
 
 </div>
 
-<div id="autor">&copy; Sorokin Evgeniy</div>
+<div id="author">&copy; Sorokin Evgeniy</div>
 
 </body>
 </html>
+
+<!--Сделано
+1. прописаны все делиты со стороны джиры
+2. при удалении клиента удаляются и его питомцы
+3. поправлена проблема с обновлением селекторов
+4. ...
+
+Сделано
+1. меню вынесено в одну функцию
+2. поправлена форма (теперь не перезагружается)
+3. поправлены стили поисковой таблицы (возможен выбор с границами)
+4. исправлена ошибка при обновлении реквеста со стороы джиры
+5. ...
+
+Надо Сделать
+1. прописать константы нормально V
+2. поменять на главной странице меню V
+3. поменять селекты в истории V
+4. добавить селект в питомцев при выборе пола V
+5. создать старотовый набор данных для нормально теста(предвапительно всё удалить (мб сделать функцию для удаления всего))
+6. сделать ввод номера только цифрами V
+7. стринг билдер на бэке истории
+
+8. почистить комменты V
+
+9. можно попроавить скрины в jira
+10. вынести повторяющийся js, если есть
+11.  .....
+12. сделать отступ между селектами в хистори V
+
+13. все переменные с маленькой буквой в верблюжем стиле V
+
+14. все методы с маленькой буквы V
+15. все классы с большой буквы V
+
+16. как можно повредить данные?
+17.
+-->

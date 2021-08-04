@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.dvoryanchikov.dogWalkingService</groupId>
     <artifactId>myPlugin</artifactId>
-    <version>1.0.0.444</version>
+    <version>1.0.0.483</version>
 
     <organization>
         <name>Example Company</name>
@@ -15,7 +15,7 @@
     </organization>
 
     <name>myPlugin</name>
-    <description>This is the com.dvoryanchikov.dogWalkingService:myPlugin plugin for Atlassian JIRA.</description>
+    <description>This is the com.sorokin.dogWalkingService:myPlugin plugin for Atlassian JIRA.</description>
     <packaging>atlassian-plugin</packaging>
 
     <dependencies>

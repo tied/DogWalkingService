@@ -33,7 +33,7 @@ var additionalRequestHistoryFunctions = function () {
         if (data !== null) {
 
             let owner = document.createElement("option");
-            owner.innerHTML = "default";
+            owner.innerHTML = "select pet";
             owner.value = "default";
             parent.append(owner);
 
@@ -51,7 +51,7 @@ var additionalRequestHistoryFunctions = function () {
         parent.innerHTML = "";
 
         let table = document.createElement("table");
-        table.id = "tableMain";
+        table.classList.add("tableMain");
         let row = document.createElement("tr");
         row.classList.add("rowTh");
 
@@ -77,7 +77,7 @@ var additionalRequestHistoryFunctions = function () {
             parent.innerHTML = "";
 
             let owner = document.createElement("option");
-            owner.innerHTML = "default";
+            owner.innerHTML = "select owner";
             owner.value = "default";
             parent.append(owner);
 
@@ -96,7 +96,7 @@ var additionalRequestHistoryFunctions = function () {
             parent.innerHTML = "";
 
             let owner = document.createElement("option");
-            owner.innerHTML = "default";
+            owner.innerHTML = "select pet";
             owner.value = "default";
             parent.append(owner);
 
@@ -115,7 +115,7 @@ var additionalRequestHistoryFunctions = function () {
             parent.innerHTML = "";
 
             let owner = document.createElement("option");
-            owner.innerHTML = "default";
+            owner.innerHTML = "select dog walker";
             owner.value = "default";
             parent.append(owner);
 

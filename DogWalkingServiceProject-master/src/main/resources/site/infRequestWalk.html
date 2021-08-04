@@ -5,22 +5,13 @@
     <title>Request walk</title>
 
     <script defer src="/plugins/servlet/servlet-inf/site/js/scriptInfRequestWalk.js" type="text/javascript"></script>
-    <link href="/plugins/servlet/servlet-inf/site/css/styleClient.css" rel="stylesheet"/>
+    <link href="/plugins/servlet/servlet-inf/site/css/myStyle.css" rel="stylesheet"/>
     <script src="https://cdn.anychart.com/js/latest/anychart-bundle.min.js"></script>
 
 </head>
 <body>
 
-<div class="dropdown">
-    <button class="dropbtn">Dropdown</button>
-    <div class="dropdown-content">
-        <a href="/plugins/servlet/servlet-inf/site/mainPage.html">main page</a>
-        <a href="/plugins/servlet/servlet-inf/site/infDog.html">pets</a>
-        <a href="/plugins/servlet/servlet-inf/site/infDogWalker.html">dogwalkers</a>
-        <a href="/plugins/servlet/servlet-inf/site/infClient.html">clients</a>
-        <a href="/plugins/servlet/servlet-inf/site/infRequestHistory.html">history</a>
-    </div>
-</div>
+<div id="menu"></div>
 
 <div id="newReq"></div>
 
@@ -34,11 +25,12 @@
 
     <script>
         scriptInfRequestWalk().createForm();
+        scriptInfRequestWalk().createMenu();
     </script>
 
     <br>
 
-    <div class="main" id="findTableReq"></div>
+    <div id="findTableReq"></div>
 
     <br>
 
@@ -137,7 +129,7 @@
 
 </div>
 
-<div id="autor">&copy; Sorokin Evgeniy</div>
+<div id="author">&copy; Sorokin Evgeniy</div>
 
 </body>
 </html>

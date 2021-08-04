@@ -7,21 +7,12 @@
     </title>
 
     <script defer src="/plugins/servlet/servlet-inf/site/js/scriptInfDog.js" type="text/javascript"></script>
-    <link href="/plugins/servlet/servlet-inf/site/css/styleClient.css" rel="stylesheet"/>
+    <link href="/plugins/servlet/servlet-inf/site/css/myStyle.css" rel="stylesheet"/>
 
 </head>
 <body>
 
-<div class="dropdown">
-    <button class="dropbtn">Dropdown</button>
-    <div class="dropdown-content">
-        <a href="/plugins/servlet/servlet-inf/site/mainPage.html">main page</a>
-        <a href="/plugins/servlet/servlet-inf/site/infClient.html">clients</a>
-        <a href="/plugins/servlet/servlet-inf/site/infDogWalker.html">dogwalkers</a>
-        <a href="/plugins/servlet/servlet-inf/site/infRequestWalk.html">requests</a>
-        <a href="/plugins/servlet/servlet-inf/site/infRequestHistory.html">history</a>
-    </div>
-</div>
+<div id="menu"></div>
 
 <div id="newDg"></div>
 
@@ -35,11 +26,12 @@
 
     <script>
         scriptInfDog().createForm();
+        scriptInfDog().createMenu();
     </script>
 
     <br>
 
-    <div class="main" id="findTableD"></div>
+    <div id="findTableD"></div>
 
     <br>
 
@@ -66,8 +58,13 @@
                     Gender:
                 </td>
                 <td>
-                    <input type="text" onclick="scriptInfDog().inputValueGender()" class="inputString"
-                           id="gender" placeholder="Default">
+<!--                    <input type="text" onclick="scriptInfDog().inputValueGender()" class="inputString"-->
+<!--                           id="gender" placeholder="Default">-->
+
+                    <select class="inputString">
+                        <option value="boy">boy</option>
+                        <option value="girl">girl</option>
+                    </select>
                     <div id="inputGender"></div>
                 </td>
             </tr>
@@ -141,7 +138,7 @@
 
 </div>
 
-<div id="autor">&copy; Sorokin Evgeniy</div>
+<div id="author">&copy; Sorokin Evgeniy</div>
 
 </body>
 </html>

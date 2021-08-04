@@ -12,12 +12,18 @@ var additionalDogFunctions = function () {
         parent.innerHTML = "";
 
         let table = document.createElement("table");
+        table.classList.add("tableMain");
         let row = document.createElement("tr");
+        row.classList.add("rowTh");
         table.append(row);
 
         createTitleTableD(row);
 
-        addDataFindD(data, table);
+        let tbody = document.createElement("tbody");
+
+        addDataFindD(data, tbody);
+
+        table.append(tbody);
 
         parent.append(table);
     }
@@ -27,7 +33,7 @@ var additionalDogFunctions = function () {
         parent.innerHTML = "";
 
         let table = document.createElement("table");
-        table.id = "tableMain"
+        table.classList.add("tableMain");
         let row = document.createElement("tr");
         row.classList.add("rowTh")
 
@@ -169,6 +175,7 @@ var additionalDogFunctions = function () {
 
     var addDataFindD = function (array, table) {
         let addRow = document.createElement('tr');
+        addRow.classList.add("row");
         table.append(addRow);
 
         for (let j = 0; j < 9; j++) {

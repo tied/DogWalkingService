@@ -24,8 +24,25 @@ var scripts = function () {
             "      </tr>\n" +
             "    </table>\n" +
             "  </form>"
+
     }
 
+    that.createMenu = function () {
+
+        var parent = document.getElementById("menu");
+        parent.innerHTML = "<button class=\"dropbtn\">Menu</button>\n" +
+            "    <div class=\"dropdown-content\">\n" +
+            "        <a href=\"/plugins/servlet/servlet-inf/site/mainPage.html\">main page</a>\n" +
+            "        <a href=\"/plugins/servlet/servlet-inf/site/infClient.html\">clients</a>\n" +
+            "        <a href=\"/plugins/servlet/servlet-inf/site/infDog.html\">pets</a>\n" +
+            "        <a href=\"/plugins/servlet/servlet-inf/site/infDogWalker.html\">dogwalkers</a>\n" +
+            "        <a href=\"/plugins/servlet/servlet-inf/site/infRequestWalk.html\">requests</a>\n" +
+            "        <a href=\"/plugins/servlet/servlet-inf/site/infRequestHistory.html\">history</a>\n" +
+            "    </div>"
+
+        parent.classList.add("dropdown");
+
+    }
 
 
     return that;

@@ -1,18 +1,3 @@
-// formFindClient()
-// addFromBd()
-// clearClient()
-// clearAllClient()
-//
-// inputValueLastName()
-// inputValueName()
-// inputValueMiddleName()
-// inputValueBirthday()
-// inputValuePhone()
-// inputValueEmail()
-// inputValueAddress()
-//
-// crt()
-
 var scriptInfClient = function() {
 
     var that = {
@@ -25,30 +10,44 @@ var scriptInfClient = function() {
 
         that.scripts.createForm();
 
-        // var myForm = document.getElementById("myFormReq");
-        // myForm.onsubmit=that.formFindClient;
         var col1 = document.getElementById("col1");
         var col2 = document.getElementById("col2");
         var col3 = document.getElementById("col3");
 
         var form = document.getElementById("myFormReq");
-        form.onsubmit = that.formFindClient;
+        form.onsubmit = function (e) {that.formFindClient(e)};
 
         col1.innerHTML = "Enter unique id client";
         col2.innerHTML = "<input class=\"inputText\" placeholder=\"Enter unique id client\" type=text id=\"uniqueId\">";
         col3.innerHTML =
-            "<input class=\"button\" type=submit name=\"submit\" value=\"find\" id=\"new\">\n" +
+            // "<input class=\"button\" type=submit name=\"submit\" value=\"find\" id=\"new\">\n" +
+            "<input class=\"button\" type=\"button\" onclick=\"scriptInfClient().formFindClientFromBtn()\" name=\"submit\" value=\"find\" id=\"new\">\n" +
             "<input class=\"button\" type=\"button\" onclick=\"scriptInfClient().addFromBd()\" value=\"get all clients\">\n" +
             "<input class=\"button\" type=\"button\" onclick=\"scriptInfClient().clearClient()\" value=\"hide found client\">\n" +
             "<input class=\"button\" type=\"button\" onclick=\"scriptInfClient().clearAllClient()\" value=\"hide all clients\">"
 
     }
 
-    that.formFindClient = function() {
+    that.createMenu = function () {
+
+        that.scripts.createMenu();
+
+    }
+
+    that.formFindClient = function(e) {
+
+        e.preventDefault();
 
         let str = document.getElementById("uniqueId").value;
 
         that.api.clientByUniqueId(str, that.additional.sendSuccessFindClient);
+
+    }
+
+    that.formFindClientFromBtn = function () {
+
+        var ev = new Event("submit");
+        document.getElementById("myFormReq").dispatchEvent(ev);
 
     }
 

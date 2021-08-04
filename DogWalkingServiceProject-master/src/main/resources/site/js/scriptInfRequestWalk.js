@@ -27,21 +27,37 @@ var scriptInfRequestWalk = function () {
         var col3 = document.getElementById("col3");
 
         var form = document.getElementById("myFormReq");
-        form.onsubmit = that.formFindReq;
+        form.onsubmit = function (e) {that.formFindReq(e)};
 
         col1.innerHTML = "Enter unique id request";
         col2.innerHTML = "<input class=\"inputText\" placeholder=\"Enter unique id request\" type=text id=\"uniqueIdReq\">";
         col3.innerHTML =
-            "<input class=\"button\" type=submit name=\"submit\" value=\"find\" id=\"new\">\n" +
+            "<input class=\"button\" type=\"button\" onclick=\"scriptInfRequestWalk().formFindRequestWalkFromBtn()\" name=\"submit\" value=\"find\" id=\"new\">\n" +
             "<input class=\"button\" type=\"button\" onclick=\"scriptInfRequestWalk().addFromBdReq()\" value=\"get all requests\">\n" +
             "<input class=\"button\" type=\"button\" onclick=\"scriptInfRequestWalk().clearReq()\" value=\"hide found request\">\n" +
             "<input class=\"button\" type=\"button\" onclick=\"scriptInfRequestWalk().clearAllReq()\" value=\"hide all requests\">"
     }
 
-    that.formFindReq = function () {
+    that.createMenu = function () {
+
+        that.scripts.createMenu();
+
+    }
+
+    that.formFindReq = function (e) {
+
+        e.preventDefault();
+
         let str = document.getElementById("uniqueIdReq").value;
 
         that.api.requestWalkByUniqueId(str, that.additional.sendSuccessFindRequestWalk);
+
+    }
+
+    that.formFindRequestWalkFromBtn = function () {
+
+        var ev = new Event("submit");
+        document.getElementById("myFormReq").dispatchEvent(ev);
 
     }
 
