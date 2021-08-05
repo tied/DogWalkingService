@@ -6,46 +6,51 @@ var additionalDogWalkerFunctions = function () {
         let parent = document.getElementById("findTableDW");
         parent.innerHTML = "";
 
-        let table = document.createElement("table");
-        table.classList.add("tableMain");
-        let row = document.createElement("tr");
-        row.classList.add("rowTh");
-        table.append(row);
+        if (data) {
+            let table = document.createElement("table");
+            table.classList.add("tableMain");
+            let row = document.createElement("tr");
+            row.classList.add("rowTh");
+            table.append(row);
 
-        createTitleTableDW(row);
+            createTitleTableDW(row);
 
-        let tbody = document.createElement("tbody");
+            let tbody = document.createElement("tbody");
 
-        addDataFindDW(data, tbody);
+            addDataFindDW(data, tbody);
 
-        table.append(tbody);
+            table.append(tbody);
 
-        parent.append(table);
+            parent.append(table);
+        }
+
     }
 
     that.sendSuccessAddFromBdDW = function (data, idEditRow) {
         let parent = document.getElementById("dogWalkerTable");
         parent.innerHTML = "";
 
-        let table = document.createElement("table");
-        table.classList.add("tableMain");
-        let row = document.createElement("tr");
-        row.classList.add("rowTh");
+        if (data) {
+            let table = document.createElement("table");
+            table.classList.add("tableMain");
+            let row = document.createElement("tr");
+            row.classList.add("rowTh");
 
-        createTitleTableDW(row);
+            createTitleTableDW(row);
 
-        let col = document.createElement("th");
-        col.innerHTML = "Edit";
-        row.append(col);
-        table.append(row);
+            let col = document.createElement("th");
+            col.innerHTML = "Edit";
+            row.append(col);
+            table.append(row);
 
-        let tbody = document.createElement("tbody");
+            let tbody = document.createElement("tbody");
 
-        addDataTableDW(data, tbody, idEditRow);
+            addDataTableDW(data, tbody, idEditRow);
 
-        table.append(tbody);
+            table.append(tbody);
 
-        parent.append(table);
+            parent.append(table);
+        }
     }
 
     that.checkValid = function () {

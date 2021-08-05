@@ -31,7 +31,7 @@ public class ClientManager {
 
     public void deleteByUniqueId(String uniqueId) throws Exception{
         try {
-            Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
+            Query query = Query.select().where("UNIQUE_ID = ?", uniqueId);
             IClient[] entities = ao.find(IClient.class, query);
             if (entities != null && entities.length > 0) {
                 ao.delete(entities[0]);
@@ -43,38 +43,39 @@ public class ClientManager {
 
     }
 
-    public Client getByUniqueId(String uniqueId) {
+    public Client getByUniqueId(String uniqueId) throws Exception{
         try {
-            Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
+            Query query = Query.select().where("UNIQUE_ID = ?", uniqueId);
             IClient[] entities = ao.find(IClient.class, query);
             if (entities != null && entities.length > 0) {
                 return Client.fromEntity(entities[0]);
+            } else {
+                return null;
             }
         } catch (Exception ex) {
-            String exs = ex.getMessage();
+            throw new Exception(ex.getMessage());
         }
-        return null;
-    }
-
-
-    public Client getByIssueId (String issueId) {
-
-        try {
-            Query query = Query.select().where("ISSUE_ID = '" + issueId + "'");
-            IClient[] entities = ao.find(IClient.class, query);
-            if (entities != null && entities.length > 0) {
-                return Client.fromEntity(entities[0]);
-            }
-        } catch (Exception ex) {
-            String exs = ex.getMessage();
-        }
-        return null;
 
     }
 
 
+    public Client getByIssueId (String issueId) throws Exception{
+        try {
+            Query query = Query.select().where("ISSUE_ID = ?",issueId);
+            IClient[] entities = ao.find(IClient.class, query);
+            if (entities != null && entities.length > 0) {
+                return Client.fromEntity(entities[0]);
+            } else {
+                return null;
+            }
+        } catch (Exception ex) {
+            throw new Exception(ex.getMessage());
+        }
 
-    public Client[] getAll() {
+    }
+
+
+    public Client[] getAll() throws Exception{
         try {
             Query query = Query.select();
             IClient[] entities = ao.find(IClient.class, query);
@@ -88,24 +89,27 @@ public class ClientManager {
                     clients[i] = Client.fromEntity(entities[i]);
                 }
                 return clients;
+            } else {
+                return null;
             }
         } catch (Exception ex) {
-            String exs = ex.getMessage();
+            throw new Exception(ex.getMessage());
         }
-        return null;
+
     }
 
-    public IClient getEntityByUniqueId(String uniqueId) {
+    public IClient getEntityByUniqueId(String uniqueId) throws Exception{
         try {
-            Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
+            Query query = Query.select().where("UNIQUE_ID = ?",uniqueId);
             IClient[] entities = ao.find(IClient.class, query);
             if (entities != null && entities.length > 0) {
                 return entities[0];
+            } else {
+                return null;
             }
         } catch (Exception ex) {
-            String exs = ex.getMessage();
+            throw new Exception(ex.getMessage());
         }
-        return null;
     }
 
     public void update(Client model) throws Exception{
@@ -121,7 +125,7 @@ public class ClientManager {
                 }
             }
         } catch (Exception ex) {
-            String exs = ex.getMessage();
+            throw new Exception(ex.getMessage());
         }
     }
 

@@ -39,6 +39,7 @@ var scriptInfDog = function () {
         e.preventDefault();
 
         let str = document.getElementById("uniqueIdD").value;
+
         that.api.dogByUniqueId(str, that.additional.sendSuccessFindDog)
     }
 

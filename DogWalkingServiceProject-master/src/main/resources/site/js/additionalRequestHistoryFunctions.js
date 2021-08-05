@@ -51,6 +51,7 @@ var additionalRequestHistoryFunctions = function () {
         parent.innerHTML = "";
 
         let table = document.createElement("table");
+        table.id ="tableMain";
         table.classList.add("tableMain");
         let row = document.createElement("tr");
         row.classList.add("rowTh");

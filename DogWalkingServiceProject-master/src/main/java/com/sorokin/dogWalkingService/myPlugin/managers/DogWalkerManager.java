@@ -6,7 +6,7 @@ import com.sorokin.dogWalkingService.myPlugin.models.DogWalker;
 import net.java.ao.Query;
 
 public class DogWalkerManager {
-    private ActiveObjects ao;
+    private final ActiveObjects ao;
 
     private DogWalkerManager(ActiveObjects ao) {
         this.ao = ao;
@@ -16,21 +16,22 @@ public class DogWalkerManager {
         return new DogWalkerManager(ao);
     }
 
-    public boolean save(DogWalker model) {
-        try {
+    public void save(DogWalker model) {
+//        try {
             IDogWalker entity = ao.create(IDogWalker.class);
             model.toEntity(entity);
             entity.save();
-            return true;
-        } catch (Exception ex) {
-            String exs = ex.getMessage();
-        }
-        return false;
+//            return true;
+//        } catch (Exception ex) {
+//            String exs = ex.getMessage();
+//        }
+//        return false;
     }
 
     public void deleteByUniqueId(String uniqueId) throws Exception{
         try {
-            Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
+//            Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
+            Query query = Query.select().where("UNIQUE_ID = ?",uniqueId);
             IDogWalker[] entities = ao.find(IDogWalker.class, query);
             if (entities != null && entities.length > 0) {
                 ao.delete(entities);
@@ -43,32 +44,36 @@ public class DogWalkerManager {
     }
 
     public DogWalker getByUniqueId(String uniqueId) {
-        try {
-            Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
+//        try {
+//            Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
+            Query query = Query.select().where("UNIQUE_ID = ?",uniqueId);
             IDogWalker[] entities = ao.find(IDogWalker.class, query);
 
             if (entities != null && entities.length > 0) {
 
                 return DogWalker.fromEntity(entities[0]);
+            } else {
+                return null;
             }
-        } catch (Exception ex) {
-            String exs = ex.getMessage();
-        }
-        return null;
+//        } catch (Exception ex) {
+//            String exs = ex.getMessage();
+//        }
+
     }
 
 
     public DogWalker getByIssueId (String issueId) {
 
-        try {
-            Query query = Query.select().where("ISSUE_ID = '" + issueId + "'");
+//        try {
+//            Query query = Query.select().where("ISSUE_ID = '" + issueId + "'");
+            Query query = Query.select().where("ISSUE_ID = ?",issueId);
             IDogWalker[] entities = ao.find(IDogWalker.class, query);
             if (entities != null && entities.length > 0) {
                 return DogWalker.fromEntity(entities[0]);
             }
-        } catch (Exception ex) {
-            String exs = ex.getMessage();
-        }
+//        } catch (Exception ex) {
+//            String exs = ex.getMessage();
+//        }
         return null;
 
     }
@@ -76,7 +81,7 @@ public class DogWalkerManager {
 
 
     public DogWalker[] getAll(){
-        try{
+//        try{
             Query query = Query.select();
             IDogWalker[] entities = ao.find(IDogWalker.class,query);
 
@@ -88,28 +93,33 @@ public class DogWalkerManager {
                     dogWalkers[i] = DogWalker.fromEntity(entities[i]);
                 }
                 return dogWalkers;
+            } else {
+                return null;
             }
-        }catch (Exception ex){
-            String exs = ex.getMessage();
-        }
-        return null;
+//        }catch (Exception ex){
+//            String exs = ex.getMessage();
+//        }
+
     }
 
     public IDogWalker getEntityByUniqueId(String uniqueId) {
-        try {
-            Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
+//        try {
+//            Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
+            Query query = Query.select().where("UNIQUE_ID = ?",uniqueId);
             IDogWalker[] entities = ao.find(IDogWalker.class, query);
             if (entities != null && entities.length > 0) {
                 return entities[0];
+            } else {
+                return null;
             }
-        } catch (Exception ex) {
-            String exs = ex.getMessage();
-        }
-        return null;
+//        } catch (Exception ex) {
+//            String exs = ex.getMessage();
+//        }
+
     }
 
-    public boolean allUpdate(DogWalker model) {
-        try {
+    public void allUpdate(DogWalker model) {
+//        try {
             if (model != null) {
                 IDogWalker entity = getEntityByUniqueId(model.getUniqueId());
                 DogWalker dogWalker = getByUniqueId(model.getUniqueId());
@@ -118,17 +128,17 @@ public class DogWalkerManager {
                 if (entity != null) {
                     model.toEntity(entity);
                     entity.save();
-                    return true;
+//                    return true;
                 }
             }
-        } catch (Exception ex) {
-            String exs = ex.getMessage();
-        }
-        return false;
+//        } catch (Exception ex) {
+//            String exs = ex.getMessage();
+//        }
+//        return false;
     }
 
-    public boolean update(DogWalker model) {
-        try {
+    public void update(DogWalker model) {
+//        try {
             if (model != null) {
                 IDogWalker entity = getEntityByUniqueId(model.getUniqueId());
 
@@ -139,12 +149,14 @@ public class DogWalkerManager {
 
                     dogWalker.toEntity(entity);
                     entity.save();
-                    return true;
+//                    return true;
                 }
-            }
-        } catch (Exception ex) {
-            String exs = ex.getMessage();
+//            } else {
+//                return false;
+//            }
+//        } catch (Exception ex) {
+//            String exs = ex.getMessage();
+//        }
         }
-        return false;
     }
 }

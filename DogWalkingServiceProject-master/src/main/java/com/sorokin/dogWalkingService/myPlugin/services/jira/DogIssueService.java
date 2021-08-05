@@ -34,7 +34,7 @@ public class DogIssueService {
         dogManager = DogManager.create(ao);
     }
 
-    private String findFullName(String id){
+    private String findFullName(String id) throws Exception{
         Client client = clientManager.getByUniqueId(id);
         return client.getName() + " " + client.getLastName();
     }
@@ -66,12 +66,11 @@ public class DogIssueService {
     }
 
     public void deleteAllByOwnerId (String ownerId) throws Exception{
-
         for (Dog dogs : dogManager.getByOwnerId(ownerId)) {
             try {
                 deleteIssue(dogs.getUniqueId());
             } catch (Exception ex) {
-                throw new Exception(ex.getMessage());
+                throw new Exception(ex.getMessage() + " no pets ");
             }
 
         }

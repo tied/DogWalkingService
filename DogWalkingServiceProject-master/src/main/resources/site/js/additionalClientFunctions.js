@@ -1,8 +1,3 @@
-// sendSuccessFindClient
-// sendSuccessAllClient
-// checkValid
-// sendSuccessCreateClient
-
 var additionalClientFunctions = function () {
 
     var that = {};
@@ -11,46 +6,52 @@ var additionalClientFunctions = function () {
         let parent = document.getElementById("findTable");
         parent.innerHTML = "";
 
-        let table = document.createElement("table");
-        table.classList.add("tableMain");
-        let row = document.createElement("tr");
-        row.classList.add("rowTh");
-        table.append(row);
+        if (data) {
+            let table = document.createElement("table");
+            table.classList.add("tableMain");
+            let row = document.createElement("tr");
+            row.classList.add("rowTh");
+            table.append(row);
 
-        createTitleTable(row);
+            createTitleTable(row);
 
-        let tbody = document.createElement("tbody");
+            let tbody = document.createElement("tbody");
 
-        addDataFind(data, tbody);
+            addDataFind(data, tbody);
 
-        table.append(tbody);
+            table.append(tbody);
 
-        parent.append(table);
+            parent.append(table);
+        }
+
     }
 
     that.sendSuccessAllClient = function (data, idEditRow) {
         let parent = document.getElementById("clientTable");
         parent.innerHTML = "";
 
-        let table = document.createElement("table");;
-        table.classList.add("tableMain");
-        let row = document.createElement("tr");
-        row.classList.add("rowTh");
+        if (data) {
+            let table = document.createElement("table");;
+            table.classList.add("tableMain");
+            let row = document.createElement("tr");
+            row.classList.add("rowTh");
 
-        createTitleTable(row);
+            createTitleTable(row);
 
-        let col = document.createElement("th");
-        col.innerHTML = "Edit";
-        row.append(col);
-        table.append(row);
+            let col = document.createElement("th");
+            col.innerHTML = "Edit";
+            row.append(col);
+            table.append(row);
 
-        let tbody = document.createElement("tbody");
+            let tbody = document.createElement("tbody");
 
-        addDataTable(data, tbody, idEditRow);
+            addDataTable(data, tbody, idEditRow);
 
-        table.append(tbody);
+            table.append(tbody);
 
-        parent.append(table);
+            parent.append(table);
+        }
+
     }
 
     that.checkValid = function() {

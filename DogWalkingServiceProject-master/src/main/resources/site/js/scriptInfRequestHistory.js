@@ -52,7 +52,7 @@ var scriptInfRequestHistory = function () {
         var table = document.getElementById('tableMain');
         var regPhrase = new RegExp(phrase.value, 'i');
         var flag = false;
-        var len = table.length;
+        // var len = table.length;
         for (var i = 1; i < table.rows.length; i++) {
             flag = false;
             for (var j = table.rows[i].cells.length - 1; j >= 0; j--) {

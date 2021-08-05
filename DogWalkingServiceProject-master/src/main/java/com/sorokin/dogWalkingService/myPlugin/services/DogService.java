@@ -55,13 +55,7 @@ public class DogService {
     }
 
     public void deleteAllPetsByOwnerId (String ownerId) throws Exception{
-
-        try {
             dogIssueService.deleteAllByOwnerId(ownerId);
-        } catch (Exception ex) {
-            throw new Exception(ex.getMessage());
-        }
-
     }
 
     public void deleteDogFromListener (Issue issue) throws Exception{

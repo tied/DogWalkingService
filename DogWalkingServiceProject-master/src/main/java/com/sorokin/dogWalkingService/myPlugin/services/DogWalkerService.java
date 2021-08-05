@@ -63,7 +63,7 @@ public class DogWalkerService {
         dogWalkerManager.deleteByUniqueId(uniqueId);
     }
 
-    public void updateDogWalker(DogWalker model) {
+    public void updateDogWalker(DogWalker model) throws Exception{
         dogWalkerManager.update(model);
         dogWalkerIssueService.changeIssueStatus(model);
     }

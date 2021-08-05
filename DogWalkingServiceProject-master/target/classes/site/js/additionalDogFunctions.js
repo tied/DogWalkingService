@@ -11,46 +11,51 @@ var additionalDogFunctions = function () {
         let parent = document.getElementById("findTableD");
         parent.innerHTML = "";
 
-        let table = document.createElement("table");
-        table.classList.add("tableMain");
-        let row = document.createElement("tr");
-        row.classList.add("rowTh");
-        table.append(row);
+        if (data) {
+            let table = document.createElement("table");
+            table.classList.add("tableMain");
+            let row = document.createElement("tr");
+            row.classList.add("rowTh");
+            table.append(row);
 
-        createTitleTableD(row);
+            createTitleTableD(row);
 
-        let tbody = document.createElement("tbody");
+            let tbody = document.createElement("tbody");
 
-        addDataFindD(data, tbody);
+            addDataFindD(data, tbody);
 
-        table.append(tbody);
+            table.append(tbody);
 
-        parent.append(table);
+            parent.append(table);
+        }
     }
 
     that.sendSuccessAllDogs = function (data, idEditRow) {
         let parent = document.getElementById("dogTable");
         parent.innerHTML = "";
 
-        let table = document.createElement("table");
-        table.classList.add("tableMain");
-        let row = document.createElement("tr");
-        row.classList.add("rowTh")
+        if (data) {
+            let table = document.createElement("table");
+            table.classList.add("tableMain");
+            let row = document.createElement("tr");
+            row.classList.add("rowTh")
 
-        createTitleTableD(row);
+            createTitleTableD(row);
 
-        let col = document.createElement("th");
-        col.innerHTML = "Edit";
-        row.append(col);
-        table.append(row);
+            let col = document.createElement("th");
+            col.innerHTML = "Edit";
+            row.append(col);
+            table.append(row);
 
-        let tbody = document.createElement("tbody");
+            let tbody = document.createElement("tbody");
 
-        addDataTableD(data, tbody, idEditRow);
+            addDataTableD(data, tbody, idEditRow);
 
-        table.append(tbody);
+            table.append(tbody);
 
-        parent.append(table);
+            parent.append(table);
+        }
+
     }
 
     that.checkValid = function () {
@@ -462,7 +467,7 @@ var additionalDogFunctions = function () {
     }
 
     that.sendSuccessLoadOwners = function (data ,id) {
-        if(data !== ""){
+        if(data){
             let parent = document.getElementById(id);
             parent.innerHTML = "";
 
@@ -472,6 +477,12 @@ var additionalDogFunctions = function () {
                 owner.value = data[i].uniqueId;
                 parent.append(owner);
             }
+        } else {
+            let parent = document.getElementById(id);
+            parent.innerHTML = "";
+            let owner = document.createElement("option");
+            owner.innerHTML = "no owners";
+            parent.append(owner);
         }
     }
 

@@ -31,6 +31,7 @@ public class DogWalkServiceController {
         return clientImpl;
     }
 
+
     @POST
     @Path("/createClient")
     public Response createClient(Client client) {

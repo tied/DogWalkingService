@@ -73,7 +73,7 @@ public class DogWalkerIssueService {
         }
     }
 
-    public Boolean changeIssueStatus(DogWalker dogWalker) {
+    public void changeIssueStatus(DogWalker dogWalker) throws Exception{
         try {
             int transitionId = 31;
 
@@ -89,12 +89,10 @@ public class DogWalkerIssueService {
                 ComponentAccessor.getIssueService().transition(ComponentAccessor
                         .getJiraAuthenticationContext().getLoggedInUser(), transitionValidationResult);
             }
-            return true;
 
         } catch (Exception ex) {
-            String exs = ex.getMessage();
+            throw new Exception(ex.getMessage());
         }
-        return false;
     }
 
     public Issue create(DogWalker dogWalker) throws Exception{

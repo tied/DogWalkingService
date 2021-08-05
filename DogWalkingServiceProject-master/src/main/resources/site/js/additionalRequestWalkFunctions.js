@@ -19,49 +19,54 @@ var additionalRequestWalkFunctions = function () {
         let parent = document.getElementById("findTableReq");
         parent.innerHTML = "";
 
-        let table = document.createElement("table");
-        table.classList.add("tableMain");
-        let row = document.createElement("tr");
-        row.classList.add("rowTh");
-        table.append(row);
+        if (data) {
+            let table = document.createElement("table");
+            table.classList.add("tableMain");
+            let row = document.createElement("tr");
+            row.classList.add("rowTh");
+            table.append(row);
 
-        createTitleTableReq(table, row);
+            createTitleTableReq(table, row);
 
-        let tbody = document.createElement("tbody");
+            let tbody = document.createElement("tbody");
 
-        addDataFindReq(data, tbody);
+            addDataFindReq(data, tbody);
 
-        table.append(tbody);
+            table.append(tbody);
 
-        parent.append(table);
+            parent.append(table);
+        }
     }
 
     that.sendSuccessAllRequestWalks = function (data) {
         let parent = document.getElementById("requestTable");
         parent.innerHTML = "";
 
-        let table = document.createElement("table");
-        table.classList.add("tableMain");
-        let row = document.createElement("tr");
-        row.classList.add("rowTh");
+        if (data) {
+            let table = document.createElement("table");
+            table.classList.add("tableMain");
+            let row = document.createElement("tr");
+            row.classList.add("rowTh");
 
-        createTitleTableReq(row);
+            createTitleTableReq(row);
 
-        let col = document.createElement("th");
-        col.innerHTML = "Pick request";
-        row.append(col);
-        table.append(row);
+            let col = document.createElement("th");
+            col.innerHTML = "Pick request";
+            row.append(col);
+            table.append(row);
 
-        let tbody = document.createElement("tbody");
+            let tbody = document.createElement("tbody");
 
-        addDataTableReq(data, tbody);
+            addDataTableReq(data, tbody);
 
-        table.append(tbody);
+            table.append(tbody);
 
-        parent.append(table);
+            parent.append(table);
 
-        createChartDogWalkers(data, getChartWalkers());
-        createChartDogs(data, getChartDogs());
+            createChartDogWalkers(data, getChartWalkers());
+            createChartDogs(data, getChartDogs());
+        }
+
     }
 
     that.sendSuccessOwnerDogs = function (data, parent) {
@@ -213,6 +218,8 @@ var additionalRequestWalkFunctions = function () {
         return date.toLocaleString();
     }
 
+
+
     var findClient = function (id) {
         let owner = "";
 
@@ -237,6 +244,9 @@ var additionalRequestWalkFunctions = function () {
 
         return owner;
     }
+
+
+
 
     var findDog = function (id) {
         let dog = "";
@@ -264,6 +274,8 @@ var additionalRequestWalkFunctions = function () {
         }
         return dog;
     }
+
+
 
     var findDogWalker = function (id) {
         let dogWalker = "";

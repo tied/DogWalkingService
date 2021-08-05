@@ -28,7 +28,7 @@ public class ClientIssueService {
         clientManager = ClientManager.create(ao);
     }
 
-    private String findIssue(String clientId) {
+    private String findIssue(String clientId) throws Exception{
         Client client = clientManager.getByUniqueId(clientId);
         return client.getIssueId();
     }

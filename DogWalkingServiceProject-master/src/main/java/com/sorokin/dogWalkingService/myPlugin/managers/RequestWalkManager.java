@@ -6,27 +6,31 @@ import com.sorokin.dogWalkingService.myPlugin.models.RequestWalk;
 import net.java.ao.Query;
 
 public class RequestWalkManager {
-    private ActiveObjects ao;
 
-    public RequestWalkManager(ActiveObjects ao) {
-        this.ao = ao;
+    private final ActiveObjects ao;
+
+    private RequestWalkManager (ActiveObjects ao) {this.ao = ao;};
+
+    public static RequestWalkManager create (ActiveObjects ao) {
+        return new RequestWalkManager(ao);
     }
 
-    public Boolean save(RequestWalk model) {
-        try {
+    public void save(RequestWalk model) {
+//        try {
             IRequestWalk entity = ao.create(IRequestWalk.class);
             model.toEntity(entity);
             entity.save();
-            return true;
-        } catch (Exception ex) {
-            String exs = ex.getMessage();
-        }
-        return false;
+//            return true;
+//        } catch (Exception ex) {
+//            String exs = ex.getMessage();
+//        }
+//        return false;
     }
 
     public void deleteByUniqueId(String uniqueId) throws Exception{
         try {
-            Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
+//            Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
+            Query query = Query.select().where("UNIQUE_ID = ?",uniqueId);
             IRequestWalk[] entities = ao.find(IRequestWalk.class, query);
             if (entities != null && entities.length > 0) {
                 ao.delete(entities);
@@ -38,7 +42,7 @@ public class RequestWalkManager {
     }
 
     public RequestWalk[] getAll(){
-        try{
+//        try{
             Query query = Query.select();
             IRequestWalk[] entities = ao.find(IRequestWalk.class,query);
 
@@ -49,59 +53,67 @@ public class RequestWalkManager {
                     requestWalks[i] = RequestWalk.fromEntity(entities[i]);
                 }
                 return requestWalks;
+            } else {
+                return null;
             }
-        }catch (Exception ex){
-            String exs = ex.getMessage();
-        }
-        return null;
+//        }catch (Exception ex){
+//            String exs = ex.getMessage();
+//        }
+
     }
 
     public RequestWalk getByUniqueId(String uniqueId) {
-        try {
-            Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
+//        try {
+//            Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
+            Query query = Query.select().where("UNIQUE_ID = ?",uniqueId);
             IRequestWalk[] entities = ao.find(IRequestWalk.class, query);
             if (entities != null && entities.length > 0) {
                 return RequestWalk.fromEntity(entities[0]);
+            } else {
+                return null;
             }
-        } catch (Exception ex) {
-            String exs = ex.getMessage();
-        }
-        return null;
+//        } catch (Exception ex) {
+//            String exs = ex.getMessage();
+//        }
+
     }
 
 
 
     public RequestWalk getByIssueId (String issueId) {
-
-        try {
-            Query query = Query.select().where("ISSUE_ID = '" + issueId + "'");
+//        try {
+//            Query query = Query.select().where("ISSUE_ID = '" + issueId + "'");
+            Query query = Query.select().where("ISSUE_ID = ?",issueId);
             IRequestWalk[] entities = ao.find(IRequestWalk.class, query);
             if (entities != null && entities.length > 0) {
                 return RequestWalk.fromEntity(entities[0]);
+            } else {
+                return null;
             }
-        } catch (Exception ex) {
-            String exs = ex.getMessage();
-        }
-        return null;
-
+//        } catch (Exception ex) {
+//            String exs = ex.getMessage();
+//        }
     }
 
 
 
     public IRequestWalk getEntityByUniqueId(String uniqueId) {
-        try {
-            Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
+//        try {
+//            Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
+            Query query = Query.select().where("UNIQUE_ID = ?",uniqueId);
             IRequestWalk[] entities = ao.find(IRequestWalk.class, query);
             if (entities != null && entities.length > 0) {
                 return entities[0];
+            } else {
+                return null;
             }
-        } catch (Exception ex) {
-            String exs = ex.getMessage();
-        }
-        return null;
+//        } catch (Exception ex) {
+//            String exs = ex.getMessage();
+//        }
+
     }
 
-    public void fullUpdate (RequestWalk model) {
+    public void fullUpdate (RequestWalk model) throws Exception{
 
         try {
             if (model != null) {
@@ -112,16 +124,15 @@ public class RequestWalkManager {
                 if (entity != null) {
                     model.toEntity(entity);
                     entity.save();
-//                    return true;
                 }
             }
         } catch (Exception ex) {
-            String exs = ex.getMessage();
+            throw new Exception(ex.getMessage());
         }
 
     }
 
-    public boolean update(RequestWalk model) {
+    public void update(RequestWalk model) throws Exception{
         try {
             if (model != null) {
                 IRequestWalk entity = getEntityByUniqueId(model.getUniqueId());
@@ -130,18 +141,16 @@ public class RequestWalkManager {
                     RequestWalk requestWalk = RequestWalk.fromEntity(entity);
 
                     if(requestWalk.getDogWalkerId().equals("No dog walker")){
-                        requestWalk.setDogWalkerId(model.getDogWalkerId());
+                        requestWalk.setDogWalkerId(model.getDogWalkerId()); // доавили Id выгульщика
                     }
-                    requestWalk.setRequestWalkStatus(model.getRequestWalkStatus());
+                    requestWalk.setRequestWalkStatus(model.getRequestWalkStatus()); // поменяли статус
 
                     requestWalk.toEntity(entity);
                     entity.save();
-                    return true;
                 }
             }
         } catch (Exception ex) {
-            String exs = ex.getMessage();
+            throw new Exception(ex.getMessage());
         }
-        return false;
     }
 }

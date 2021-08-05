@@ -33,11 +33,11 @@ public class ClientService {
         return new ClientService(ao);
     }
 
-    public Client getClientByUniqueId(String uniqueId) {
+    public Client getClientByUniqueId(String uniqueId) throws Exception {
         return clientManager.getByUniqueId(uniqueId);
     }
 
-    public Client[] getAllClients() {
+    public Client[] getAllClients() throws Exception{
         return clientManager.getAll();
     }
 
@@ -55,11 +55,7 @@ public class ClientService {
 
         clientManager.deleteByUniqueId(uniqueIdClient);
 
-        try {
-            deletePetsByOwnerId(uniqueIdClient);
-        } catch (Exception ex) {
-            throw new Exception(ex.getMessage());
-        }
+        deletePetsByOwnerId(uniqueIdClient);
 
     }
 
@@ -70,12 +66,7 @@ public class ClientService {
     }
 
     public void deletePetsByOwnerId (String ownerId) throws Exception {
-        try {
             dogService.deleteAllPetsByOwnerId(ownerId);
-        } catch (Exception ex) {
-            throw new Exception(ex.getMessage());
-        }
-
     }
 
     public void UpdateClientFromListener (Issue issue) throws Exception {

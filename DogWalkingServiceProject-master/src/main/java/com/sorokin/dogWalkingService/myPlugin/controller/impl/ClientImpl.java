@@ -19,11 +19,21 @@ public class ClientImpl {
     }
 
     public Client getClientByUniqueId(String uniqueId) {
-        return clientService.getClientByUniqueId(uniqueId);
+        try {
+            return clientService.getClientByUniqueId(uniqueId);
+        } catch (Exception ex) {
+            return null;
+        }
+
     }
 
     public Client[] getAllClients() {
-        return clientService.getAllClients();
+        try {
+            return clientService.getAllClients();
+        } catch (Exception ex) {
+            return null;
+        }
+
     }
 
     public StatusResponse createClient(Client model) {

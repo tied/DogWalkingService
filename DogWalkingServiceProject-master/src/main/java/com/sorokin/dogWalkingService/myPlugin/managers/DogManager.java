@@ -16,17 +16,17 @@ public class DogManager {
         return new DogManager(ao);
     }
 
-    public boolean save(Dog model) {
+    public void save(Dog model) throws Exception{
         try {
             IDog entity = ao.create(IDog.class);
             model.toEntity(entity);
             entity.save();
 
-            return true;
+//            return true;
         } catch (Exception ex) {
-            String exs = ex.getMessage();
+            throw new Exception(ex.getMessage());
         }
-        return false;
+//        return false;
     }
     
     public void deleteAllByOwnerId (String ownerId) throws Exception{
@@ -39,7 +39,8 @@ public class DogManager {
 
     public void deleteByUniqueId(String uniqueId) throws Exception{
         try {
-            Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
+//            Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
+            Query query = Query.select().where("UNIQUE_ID = ?",uniqueId);
             IDog[] entities = ao.find(IDog.class, query);
 
             if (entities != null && entities.length > 0) {
@@ -53,8 +54,9 @@ public class DogManager {
     }
 
     public Dog[] getByOwnerId(String ownerId){
-        try{
-            Query query = Query.select().where("OWNER_ID = '" + ownerId + "'");
+//        try{
+//            Query query = Query.select().where("OWNER_ID = '" + ownerId + "'");
+            Query query = Query.select().where("OWNER_ID = ?",ownerId);
             IDog[] entities = ao.find(IDog.class,query);
 
             if(entities != null && entities.length>0){
@@ -64,46 +66,54 @@ public class DogManager {
                     dogs[i] = Dog.fromEntity(entities[i]);
                 }
                 return dogs;
+            } else {
+                return null;
             }
-        }catch (Exception ex){
-            String exs = ex.getMessage();
-        }
-        return null;
+//        }catch (Exception ex){
+//            String exs = ex.getMessage();
+//        }
+
     }
 
     public Dog getByUniqueId(String uniqueId) {
-        try {
-            Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
+//        try {
+//            Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
+            Query query = Query.select().where("UNIQUE_ID = ?",uniqueId);
             IDog[] entities = ao.find(IDog.class, query);
 
             if (entities != null && entities.length > 0) {
                 return Dog.fromEntity(entities[0]);
+            } else {
+                return null;
             }
-        } catch (Exception ex) {
-            String exs = ex.getMessage();
-        }
-        return null;
+//        } catch (Exception ex) {
+//            String exs = ex.getMessage();
+//        }
+
     }
 
 
     public Dog getByIssueId (String issueId) {
 
-        try {
-            Query query = Query.select().where("ISSUE_ID = '" + issueId + "'");
+//        try {
+//            Query query = Query.select().where("ISSUE_ID = '" + issueId + "'");
+            Query query = Query.select().where("ISSUE_ID = ?",issueId);
             IDog[] entities = ao.find(IDog.class, query);
             if (entities != null && entities.length > 0) {
                 return Dog.fromEntity(entities[0]);
+            } else {
+                return null;
             }
-        } catch (Exception ex) {
-            String exs = ex.getMessage();
-        }
-        return null;
+//        } catch (Exception ex) {
+//            String exs = ex.getMessage();
+//        }
+
 
     }
 
 
     public Dog[] getAll() {
-        try {
+//        try {
             Query query = Query.select();
             IDog[] entities = ao.find(IDog.class, query);
 
@@ -115,31 +125,35 @@ public class DogManager {
                     dogs[i] = Dog.fromEntity(entities[i]);
                 }
                 return dogs;
+            } else {
+                return null;
             }
 
-        } catch (Exception ex) {
-            String exs = ex.getMessage();
-        }
-        return null;
+//        } catch (Exception ex) {
+//            String exs = ex.getMessage();
+//        }
+
     }
 
     public IDog getEntityByUniqueId(String uniqueId) {
-        try {
-            Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
+//        try {
+//            Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
+            Query query = Query.select().where("UNIQUE_ID = ?",uniqueId);
             IDog[] entities = ao.find(IDog.class, query);
 
             if (entities != null && entities.length > 0) {
                 return entities[0];
+            } else {
+                return null;
             }
-        } catch (Exception ex) {
-            String exs = ex.getMessage();
-        }
-        return null;
+//        } catch (Exception ex) {
+//            String exs = ex.getMessage();
+//        }
+
     }
 
-    //Update using all field of getting model
     public void fullUpdate(Dog model){
-        try {
+//        try {
             if (model != null) {
                 IDog entity = getEntityByUniqueId(model.getUniqueId());
                 Dog dog = getByUniqueId(model.getUniqueId());
@@ -150,13 +164,13 @@ public class DogManager {
                     entity.save();
                 }
             }
-        } catch (Exception ex) {
-            String exs = ex.getMessage();
-        }
+//        } catch (Exception ex) {
+//            String exs = ex.getMessage();
+//        }
     }
 
-    public boolean update(Dog model) {
-        try {
+    public void update(Dog model) {
+//        try {
             if (model != null) {
                 IDog entity = getEntityByUniqueId(model.getUniqueId());
 
@@ -167,12 +181,12 @@ public class DogManager {
 
                     dog.toEntity(entity);
                     entity.save();
-                    return true;
+//                    return true;
                 }
             }
-        } catch (Exception ex) {
-            String exs = ex.getMessage();
-        }
-        return false;
+//        } catch (Exception ex) {
+//            String exs = ex.getMessage();
+//        }
+//        return false;
     }
 }
